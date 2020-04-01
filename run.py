@@ -24,7 +24,7 @@ async def _ping(ctx):
 async def _ping(ctx):
     await ctx.send(f'<@{ctx.author.id}> Pong!')
 
-@bot.command(name='creatr_time')
+@bot.command(name='creatr_time', aliases=['c_t', 'ct'])
 async def _creatr_time(ctx):
     await ctx.send('2020/04/01 22:55 Done!')
 
