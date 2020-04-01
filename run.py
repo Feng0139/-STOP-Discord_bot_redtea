@@ -14,7 +14,7 @@ async def on_ready():
     print('We have logged in as {0.user}'.format(bot))
     await bot.change_presence(status=discord.Status.idle, activity=discord.Game("Cyyou! OCR -Code: SgEAh66"))
 
-@bot.command(name='hello', aliases=['hi', 'Hi', 'Hello'])
+@bot.command(name='hello', aliases=['hi'])
 async def _hello(ctx):
     await ctx.send(f'{ctx.author.mention} Hi!')
 
