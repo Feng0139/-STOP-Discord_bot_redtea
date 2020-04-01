@@ -16,6 +16,10 @@ async def on_ready():
     
     await client.change_presence(status=discord.Status.idle, activity=discord.game('Cyyou! OCR'))
 
+@client.command()
+async def ping(ctx):
+    await ctx.send("Pong!")
+
 @client.event
 async def on_message(message):
     if message.author == client.user:
