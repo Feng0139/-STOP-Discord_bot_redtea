@@ -12,7 +12,7 @@ bot.config_token = read_token()
 @bot.event
 async def on_ready():
     print('We have logged in as {0.user}'.format(bot))
-    await bot.change_presence(status=discord.Status.dnd, activity=discord.Game('Cyyou! OCR [Code: SgEAh66]'))
+    await bot.change_presence(status=discord.Status.dnd, activity=discord.Game('Cyyou! OCR -Code: SgEAh66'))
 
 @bot.command(name='hello', aliases=['hi', 'Hi', 'Hello'])
 async def _ping(ctx):
