@@ -6,10 +6,8 @@ def read_token():
         lines = f.readlines()
         return lines[0].strip()
 
-#bot = discord.Client()
 bot = commands.Bot(command_prefix = '$', case_insensitive=True)
 bot.config_token = read_token()
-
 
 @bot.event
 async def on_ready():
