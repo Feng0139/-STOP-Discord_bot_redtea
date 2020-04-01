@@ -6,28 +6,26 @@ def read_token():
         lines = f.readlines()
         return lines[0].strip()
 
-token = read_token()
-#client = discord.Client()
-client = commands.Bot(command_prefix = '$')
+#bot = discord.Client()
+bot = commands.Bot(command_prefix = '$')
+bot.config_token = read_token()
 
-@client.event
+
+@bot.event
 async def on_ready():
-    print('We have logged in as {0.user}'.format(client))
-    await client.change_presence(status=discord.Status.idle, activity=discord.game('Cyyou! OCR'))
+    print('We have logged in as {0.user}'.format(bot))
+    await bot.change_presence(status=discord.Status.idle, activity=discord.game('Cyyou! OCR'))
 
-@client.command()
-async def ping(ctx):
-    await ctx.channel.send("Pong!")
+@bot.command(name='ping')
+async def _ping(ctx):
+    await ctx.send(f'{ctx.author.mention} Pong!')
+    await ctx.send(f'<@{ctx.author.id}> Pong!')
 
-@client.event
-async def on_message(message):
-    if message.author == client.user:
-        return
-    
-    if message.content.startswith('$create_time'):
-        await message.channel.send('2020/04/01 22:55 Done!')
-    
-    if message.content.startswith('$hello'):
-        await message.channel.send('Hello!')
+#@bot.event
+#async def on_message(message):
+#    if message.author == bot.user:
+#        return
+#    if message.content.startswith('$create_time'):
+#        await message.channel.send('2020/04/01 22:55 Done!')
 
-client.run(token)
+bot.run(bot.config_token)
