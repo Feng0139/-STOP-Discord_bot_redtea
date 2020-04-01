@@ -16,18 +16,30 @@ async def on_ready():
 
 @bot.command(name='hello', aliases=['hi'])
 async def _hello(ctx):
+    """
+    Hi!
+    """
     await ctx.send(f'{ctx.author.mention} Hi!')
 
 @bot.command(name='ping')
 async def _ping(ctx):
+    """
+    Pong!
+    """
     await ctx.send(f'<@{ctx.author.id}> Pong!')
 
 @bot.command(name='creatr_time', aliases=['c_t', 'ct'])
 async def _creatr_time(ctx):
+    """
+    Robot creation time
+    """
     await ctx.send('2020/04/01 22:55 Done!')
 
 @bot.command()
 async def echo(ctx, *, message=None):
+    """
+    Let the robot say something
+    """
     message = message or '请提供必要的文字内容.'
     await ctx.message.delete()
     await ctx.send(message)
