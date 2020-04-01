@@ -7,13 +7,12 @@ def read_token():
         return lines[0].strip()
 
 token = read_token()
-client = discord.Client()
+#client = discord.Client()
 client = commands.Bot(command_prefix = '$')
 
 @client.event
 async def on_ready():
     print('We have logged in as {0.user}'.format(client))
-    
     await client.change_presence(status=discord.Status.idle, activity=discord.game('Cyyou! OCR'))
 
 @client.command()
