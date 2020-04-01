@@ -8,12 +8,13 @@ def read_token():
 token = read_token()
 client = discord.Client()
 
-activity_game = discord.game("Cyyou! OCR")
 
 @client.event
 async def on_ready():
     print('We have logged in as {0.user}'.format(client))
-    await client.change.presence(activity = activity_game)
+    
+    activity_game = discord.game("Cyyou! OCR")
+    await client.change_presence(status=discord.Status.dnd, activity=activity_game)
 
 @client.event
 async def on_message(message):
