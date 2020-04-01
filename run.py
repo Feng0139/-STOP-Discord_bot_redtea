@@ -18,7 +18,7 @@ async def on_message(message):
         return
     
     if message.content.startswith('$create_time'):
-        await meaage.channel.send('2020/04/01 22:55 Done!')
+        await message.channel.send('2020/04/01 22:55 Done!')
     
     if message.content.startswith('$hello'):
         await message.channel.send('Hello!')
