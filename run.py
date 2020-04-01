@@ -1,4 +1,5 @@
 import discord
+from discord.ext import commands
 
 def read_token():
     with open("token.txt", "r") as f:
@@ -7,14 +8,13 @@ def read_token():
 
 token = read_token()
 client = discord.Client()
-
+client = commands.Bot(command_prefix = '$')
 
 @client.event
 async def on_ready():
     print('We have logged in as {0.user}'.format(client))
     
-    activity_game = discord.game("Cyyou! OCR")
-    await client.change_presence(status=discord.Status.dnd, activity=activity_game)
+    await client.change_presence(status=discord.Status.idle, activity=discord.game('Cyyou! OCR'))
 
 @client.event
 async def on_message(message):
