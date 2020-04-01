@@ -16,7 +16,10 @@ async def on_ready():
 async def on_message(message):
     if message.author == client.user:
         return
-
+    
+    if message.content.startswith('$create_time'):
+        await meaage.channel.send('2020/04/01 22:55 Done!')
+    
     if message.content.startswith('$hello'):
         await message.channel.send('Hello!')
 
