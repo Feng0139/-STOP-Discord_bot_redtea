@@ -7,14 +7,14 @@ def read_token():
         return lines[0].strip()
 
 #bot = discord.Client()
-bot = commands.Bot(command_prefix = '$')
+bot = commands.Bot(command_prefix = '$', case_insensitive=True)
 bot.config_token = read_token()
 
 
 @bot.event
 async def on_ready():
     print('We have logged in as {0.user}'.format(bot))
-    await bot.change_presence(status=discord.Status.idle, activity=discord.Game('Cyyou! OCR'))
+    await bot.change_presence(status=discord.Status.dnd, activity=discord.Game('Cyyou! OCR [Code: SgEAh66]'))
 
 @bot.command(name='hello', aliases=['hi', 'Hi', 'Hello'])
 async def _ping(ctx):
@@ -27,6 +27,12 @@ async def _ping(ctx):
 @bot.command(name='creatr_time', aliases=['c_t', 'ct'])
 async def _creatr_time(ctx):
     await ctx.send('2020/04/01 22:55 Done!')
+
+@bot.command()
+async def echo(ctx, *, message=None):
+    message = message or '请提供必要的文字内容.'
+    await ctx.message.delete()
+    await ctx.send(message)
 
 #@bot.event
 #async def on_message(message):
