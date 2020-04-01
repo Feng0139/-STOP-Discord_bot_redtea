@@ -15,7 +15,7 @@ async def on_ready():
     await bot.change_presence(status=discord.Status.idle, activity=discord.Game("Cyyou! OCR -Code: SgEAh66"))
 
 @bot.command(name='hello', aliases=['hi', 'Hi', 'Hello'])
-async def _ping(ctx):
+async def _hello(ctx):
     await ctx.send(f'{ctx.author.mention} Hi!')
 
 @bot.command(name='ping')
