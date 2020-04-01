@@ -16,10 +16,17 @@ async def on_ready():
     print('We have logged in as {0.user}'.format(bot))
     await bot.change_presence(status=discord.Status.idle, activity=discord.Game('Cyyou! OCR'))
 
+@bot.command(name='hello', aliases=['hi', 'Hi', 'Hello'])
+async def _ping(ctx):
+    await ctx.send(f'{ctx.author.mention} Hi!')
+
 @bot.command(name='ping')
 async def _ping(ctx):
-    await ctx.send(f'{ctx.author.mention} Pong!')
     await ctx.send(f'<@{ctx.author.id}> Pong!')
+
+@bot.command(name='creatr_time')
+async def _creatr_time(ctx):
+    await ctx.send('2020/04/01 22:55 Done!')
 
 #@bot.event
 #async def on_message(message):
