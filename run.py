@@ -3,6 +3,11 @@ from discord.ext import commands
 import json
 import mysql.connector
 
+def read_token():
+    with open("token.txt", "r") as f:
+        lines = f.readlines()
+        return lines[0].strip()
+
 key = json.loads(open('key.json', encoding='utf-8').read())
 
 bot = commands.Bot(command_prefix = '$', case_insensitive=True, owner_id='341273212656680960')
