@@ -11,8 +11,8 @@ def read_token():
 key = json.loads(open('key.json', encoding='utf-8').read())
 
 bot = commands.Bot(command_prefix = '$', case_insensitive=True, owner_id='341273212656680960')
-# bot.config_token = key["token"]
-bot.config_token = read_token()
+bot.config_token = key["token"]
+# bot.config_token = read_token()
 
 @bot.event
 async def on_ready():
