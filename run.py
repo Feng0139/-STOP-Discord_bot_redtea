@@ -26,11 +26,60 @@ async def on_ready():
     await bot.change_presence(status=discord.Status.dnd, activity=discord.Game("Cyyou! OCR Code: SgEAh66"))
 
 @bot.command()
-async def search(ctx, *, message=None):
+async def test(ctx, *, message=None):
+    """
+    Test
+    """
+    try:
+        sql = "select uid, username, newpoints, postnum, threadnum from `tws_users` where username = " + message + ";"
+
+        mycursor.execute(sql)
+        buf = mycursor.fetchone()
+
+        embed = discord.Embed(title="Test", colour=discord.Colour(0xff0101))
+
+        embed.set_image(url="https://www.teeworlds.cn/uploads/avatars/avatar_"+buf[0]+".jpg")
+        embed.set_author(name=buf[1], url="https://www.teeworlds.cn/user-"+buf[0]+".html", icon_url="")
+        embed.set_footer(text="RedTea")
+        
+        embed.add_field(name="UID", value=buf[0])
+        embed.add_field(name="Username", value=buf[1])
+        embed.add_field(name="Points",value=buf[2])
+        embed.add_field(name="Post Num", value=buf[3], inline=True)
+        embed.add_field(name="Thread Num", value=buf[4], inline=True)
+        embed.add_field(name="Status", value="Done!")
+        
+        # await ctx.send(f'{ctx.author.mention}\n```UID: {buf[0]}\nUser: {buf[1]}\nPoints: {buf[2]}\nPost Num: {buf[3]}\nThread Num: {buf[4]}```')
+        await ctx.send(embed=embed)
+    except:
+        mydb = relink_mydb()
+        await ctx.send(f'{ctx.author.mention} 无法查询')
+
+    
+
+@bot.command()
+async def searchu(ctx, *, message=None):
+    """
+    Search in UID(num)
+    """
     try:
         # mydb.ping()
 
         sql = "select uid, username, newpoints, postnum, threadnum from `tws_users` where uid = " + message + ";"
+
+        mycursor.execute(sql)
+        buf = mycursor.fetchone()
+        await ctx.send(f'{ctx.author.mention}\n```UID: {buf[0]}\nUser: {buf[1]}\nPoints: {buf[2]}\nPost Num: {buf[3]}\nThread Num: {buf[4]}```')
+    except:
+        mydb = relink_mydb()
+        await ctx.send(f'{ctx.author.mention} 无法查询')
+
+async def searchn(ctx, *, message=None):
+    """
+    Search in userName(str)
+    """
+    try:
+        sql = "select uid, username, newpoints, postnum, threadnum from `tws_users` where username = " + message + ";"
 
         mycursor.execute(sql)
         buf = mycursor.fetchone()
