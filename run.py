@@ -49,9 +49,13 @@ async def test(ctx, *, message=None):
         embed.add_field(name="Post Num", value=buf[3], inline=True)
         embed.add_field(name="Thread Num", value=buf[4], inline=True)
         embed.add_field(name="Status", value="Done!")
+        embed.add_field(name="Post Num", value=buf[3], inline=True)
+        embed.add_field(name="Thread Num", value=buf[4], inline=True)
+        embed.add_field(name="")
+        embed.add_field(name="Thread Num", value=buf[4], inline=True)
+        embed.add_field(name="Post Num", value=buf[3], inline=True)
         
-        # await ctx.send(f'{ctx.author.mention}\n```UID: {buf[0]}\nUser: {buf[1]}\nPoints: {buf[2]}\nPost Num: {buf[3]}\nThread Num: {buf[4]}```')
-        await ctx.send(embed=embed)
+        await ctx.say(content="", embed=embed)
     except:
         mydb = relink_mydb()
         await ctx.send(f'{ctx.author.mention} 无法查询')
@@ -64,7 +68,6 @@ async def searchu(ctx, *, message=None):
     Search in UID(num)
     """
     try:
-        print(message)
         # mydb.ping()
 
         sql = "select uid, username, newpoints, postnum, threadnum from `tws_users` where uid = " + message + ";"
@@ -82,7 +85,6 @@ async def searchn(ctx, *, message=None):
     Search in userName(str)
     """
     try:
-        print(message)
         sql = "select uid, username, newpoints, postnum, threadnum from `tws_users` where username = '" + message + "';"
 
         mycursor.execute(sql)
