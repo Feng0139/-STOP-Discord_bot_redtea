@@ -30,12 +30,12 @@ async def on_ready():
 async def search(ctx, *, message=None):
     try:
         mydb.ping()
-        if isinstance(message, int):
-            sql = "select uid, username, newpoints, postnum, threadnum from `tws_users` where uid = " + message + ";"
+        
+        sql = "select uid, username, newpoints, postnum, threadnum from `tws_users` where uid = " + message + ";"
 
-            mycursor.execute(sql)
-            buf = mycursor.fetchone()
-            await ctx.send(f'{ctx.author.mention}\n```UID: {buf[0]}\nUser: {buf[1]}\nPoints: {buf[2]}\nPost Num: {buf[3]}\nThread Num: {buf[4]}```')
+        mycursor.execute(sql)
+        buf = mycursor.fetchone()
+        await ctx.send(f'{ctx.author.mention}\n```UID: {buf[0]}\nUser: {buf[1]}\nPoints: {buf[2]}\nPost Num: {buf[3]}\nThread Num: {buf[4]}```')
     except:
         mydb = relink_mydb()
         await ctx.send(f'{ctx.author.mention} 无法查询')
