@@ -37,11 +37,18 @@ async def test(ctx, *, message=None):
         mycursor.execute(sql)
         buf = mycursor.fetchone()
 
-        embed = discord.Embed(title="Test", colour=discord.Colour(0xff0101))
+        embed = discord.Embed(
+            title = "Title",
+            colour = discord.Colour.red()
+        )
 
         embed.set_image(url="https://www.teeworlds.cn/uploads/avatars/avatar_"+str(buf[0])+".jpg")
-        embed.set_author(name=str(buf[1]), url="https://www.teeworlds.cn/user-"+str(buf[0])+".html", icon_url="")
-        embed.set_footer(text="RedTea")
+        embed.set_author(
+            name=str(buf[1]),
+            url="https://www.teeworlds.cn/user-"+str(buf[0])+".html",
+            icon_url=""
+        )
+        embed.set_footer(text="RedTea.")
         
         embed.add_field(name="UID", value=str(buf[0]))
         embed.add_field(name="Username", value=str(buf[1]))
@@ -55,7 +62,7 @@ async def test(ctx, *, message=None):
         embed.add_field(name="Thread Num", value=str(buf[4]), inline=True)
         embed.add_field(name="Post Num", value=str(buf[3]), inline=True)
         
-        await ctx.send(embed)
+        await client.say(embed=embed)
 
     except:
         mydb = relink_mydb()
