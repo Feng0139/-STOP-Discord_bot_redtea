@@ -32,7 +32,7 @@ async def test(ctx, *, message=None):
     """
     try:
         print(message)
-        sql = "select uid, username, newpoints, postnum, threadnum from `tws_users` where username = " + message + ";"
+        sql = "select uid, username, newpoints, postnum, threadnum from `tws_users` where username = '" + message + "';"
 
         mycursor.execute(sql)
         buf = mycursor.fetchone()
@@ -83,7 +83,7 @@ async def searchn(ctx, *, message=None):
     """
     try:
         print(message)
-        sql = "select uid, username, newpoints, postnum, threadnum from `tws_users` where username = " + message + ";"
+        sql = "select uid, username, newpoints, postnum, threadnum from `tws_users` where username = '" + message + "';"
 
         mycursor.execute(sql)
         buf = mycursor.fetchone()
