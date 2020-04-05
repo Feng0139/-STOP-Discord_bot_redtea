@@ -39,25 +39,28 @@ async def test(ctx, *, message=None):
 
         embed = discord.Embed(title="Test", colour=discord.Colour(0xff0101))
 
-        embed.set_image(url="https://www.teeworlds.cn/uploads/avatars/avatar_"+buf[0]+".jpg")
-        embed.set_author(name=buf[1], url="https://www.teeworlds.cn/user-"+buf[0]+".html", icon_url="")
+        embed.set_image(url="https://www.teeworlds.cn/uploads/avatars/avatar_"+str(buf[0])+".jpg")
+        embed.set_author(name=str(buf[1]), url="https://www.teeworlds.cn/user-"+str(buf[0])+".html", icon_url="")
         embed.set_footer(text="RedTea")
         
-        embed.add_field(name="UID", value=buf[0])
-        embed.add_field(name="Username", value=buf[1])
-        embed.add_field(name="Points",value=buf[2])
-        embed.add_field(name="Post Num", value=buf[3], inline=True)
-        embed.add_field(name="Thread Num", value=buf[4], inline=True)
+        embed.add_field(name="UID", value=str(buf[0]))
+        embed.add_field(name="Username", value=str(buf[1]))
+        embed.add_field(name="Points",value=str(buf[2]))
+        embed.add_field(name="Post Num", value=str(buf[3]), inline=True)
+        embed.add_field(name="Thread Num", value=str(buf[4]), inline=True)
         embed.add_field(name="Status", value="Done!")
-        embed.add_field(name="Post Num", value=buf[3], inline=True)
-        embed.add_field(name="Thread Num", value=buf[4], inline=True)
+        embed.add_field(name="Post Num", value=str(buf[3]), inline=True)
+        embed.add_field(name="Thread Num", value=str(buf[4]), inline=True)
         embed.add_field(name="", value="")
-        embed.add_field(name="Thread Num", value=buf[4], inline=True)
-        embed.add_field(name="Post Num", value=buf[3], inline=True)
+        embed.add_field(name="Thread Num", value=str(buf[4]), inline=True)
+        embed.add_field(name="Post Num", value=str(buf[3]), inline=True)
         
         await ctx.say(content="", embed=embed)
     except:
         mydb = relink_mydb()
+        
+        await ctx.say(content="", embed=embed)
+        await ctx.send(content="", embed=embed)
         await ctx.send(f'{ctx.author.mention} 无法查询')
 
     
