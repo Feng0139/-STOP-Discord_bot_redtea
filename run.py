@@ -58,7 +58,7 @@ async def test(ctx, *, message=None):
 
     
 
-@bot.command()
+@bot.command(aliases=['search'])
 async def searchu(ctx, *, message=None):
     """
     Search in UID(num)
