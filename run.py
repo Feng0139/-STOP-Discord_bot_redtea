@@ -51,7 +51,7 @@ async def test(ctx, *, message=None):
         embed.add_field(name="Status", value="Done!")
         embed.add_field(name="Post Num", value=buf[3], inline=True)
         embed.add_field(name="Thread Num", value=buf[4], inline=True)
-        embed.add_field(name="")
+        embed.add_field(name="", value="")
         embed.add_field(name="Thread Num", value=buf[4], inline=True)
         embed.add_field(name="Post Num", value=buf[3], inline=True)
         
