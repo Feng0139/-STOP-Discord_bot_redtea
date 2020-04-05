@@ -8,16 +8,37 @@ def read_token():
         lines = f.readlines()
         return lines[0].strip()
 
+def relink_mydb():
+    return mysql.connector.connect(host=key["ipaddress"],user=key["username"],passwd=key["password"],database=key["username"])
+
+
 key = json.loads(open('key.json', encoding='utf-8').read())
 
 bot = commands.Bot(command_prefix = '$', case_insensitive=True, owner_id='341273212656680960')
 bot.config_token = key["token"]
 # bot.config_token = read_token()
 
+mydb = relink_mydb()
+mycursor = mydb.cursor()
+
 @bot.event
 async def on_ready():
     print('We have logged in as {0.user}'.format(bot))
     await bot.change_presence(status=discord.Status.dnd, activity=discord.Game("Cyyou! OCR Code: SgEAh66"))
+
+@bot.command()
+async def search(ctx, *, message=None):
+    try:
+        mydb.ping()
+        if isinstance(message, int):
+            sql = "select uid, username, newpoints, postnum, threadnum from `tws_users` where uid = " + message + ";"
+
+            mycursor.execute(sql)
+            buf = mycursor.fetchone()
+            await ctx.send(f'{ctx.author.mention}\n```UID: {buf[0]}\nUser: {buf[1]}\nPoints: {buf[2]}\nPost Num: {buf[3]}\nThread Num: {buf[4]}```')
+    except:
+        mydb = relink_mydb()
+        await ctx.send(f'{ctx.author.mention} 无法查询')
 
 @bot.command(name='hello', aliases=['hi'])
 async def _hello(ctx):
