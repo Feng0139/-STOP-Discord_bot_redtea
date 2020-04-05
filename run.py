@@ -11,7 +11,6 @@ def read_token():
 def relink_mydb():
     return mysql.connector.connect(host=key["ipaddress"],user=key["username"],passwd=key["password"],database=key["username"])
 
-
 key = json.loads(open('key.json', encoding='utf-8').read())
 
 bot = commands.Bot(command_prefix = '$', case_insensitive=True, owner_id='341273212656680960')
@@ -29,8 +28,8 @@ async def on_ready():
 @bot.command()
 async def search(ctx, *, message=None):
     try:
-        mydb.ping()
-        
+        # mydb.ping()
+
         sql = "select uid, username, newpoints, postnum, threadnum from `tws_users` where uid = " + message + ";"
 
         mycursor.execute(sql)
