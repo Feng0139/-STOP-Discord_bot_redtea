@@ -31,6 +31,7 @@ async def test(ctx, *, message=None):
     Test
     """
     try:
+        print(message)
         sql = "select uid, username, newpoints, postnum, threadnum from `tws_users` where username = " + message + ";"
 
         mycursor.execute(sql)
@@ -63,6 +64,7 @@ async def searchu(ctx, *, message=None):
     Search in UID(num)
     """
     try:
+        print(message)
         # mydb.ping()
 
         sql = "select uid, username, newpoints, postnum, threadnum from `tws_users` where uid = " + message + ";"
@@ -74,11 +76,13 @@ async def searchu(ctx, *, message=None):
         mydb = relink_mydb()
         await ctx.send(f'{ctx.author.mention} 无法查询')
 
+@bot.command()
 async def searchn(ctx, *, message=None):
     """
     Search in userName(str)
     """
     try:
+        print(message)
         sql = "select uid, username, newpoints, postnum, threadnum from `tws_users` where username = " + message + ";"
 
         mycursor.execute(sql)
