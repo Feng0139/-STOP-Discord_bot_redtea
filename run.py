@@ -62,7 +62,7 @@ async def test(ctx, *, message=None):
         embed.add_field(name="Thread Num", value=str(buf[4]), inline=True)
         embed.add_field(name="Post Num", value=str(buf[3]), inline=True)
         
-        await client.say(embed=embed)
+        await bot.say(embed=embed)
 
     except:
         mydb = relink_mydb()
