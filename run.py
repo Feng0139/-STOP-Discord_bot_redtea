@@ -13,6 +13,7 @@ def relink_mydb():
 
 key = json.loads(open('key.json', encoding='utf-8').read())
 
+# setting prefix & online status & admin id
 bot = commands.Bot(command_prefix = '$', case_insensitive=True, owner_id='341273212656680960')
 bot.config_token = key["token"]
 # bot.config_token = read_token()
@@ -33,6 +34,8 @@ async def test(ctx, *, message=None):
     try:
         print(message)
         sql = "select uid, username, newpoints, postnum, threadnum from `tws_users` where username = '" + message + "';"
+
+        mycursor.ping(reconnect=True)
 
         mycursor.execute(sql)
         buf = mycursor.fetchone()
@@ -71,11 +74,13 @@ async def searchu(ctx, *, message=None):
 
         sql = "select uid, username, newpoints, postnum, threadnum from `tws_users` where uid = " + message + ";"
 
+        mycursor.ping(reconnect=True)
+        
         mycursor.execute(sql)
         buf = mycursor.fetchone()
         await ctx.send(f'{ctx.author.mention}\n```UID: {buf[0]}\nUser: {buf[1]}\nPoints: {buf[2]}\nPost Num: {buf[3]}\nThread Num: {buf[4]}```')
     except:
-        mydb = relink_mydb()
+        # mydb = relink_mydb()
         await ctx.send(f'{ctx.author.mention} 无法查询')
 
 @bot.command()
@@ -85,6 +90,8 @@ async def searchn(ctx, *, message=None):
     """
     try:
         sql = "select uid, username, newpoints, postnum, threadnum from `tws_users` where username = '" + message + "';"
+
+        mycursor.ping(reconnect=True)
 
         mycursor.execute(sql)
         buf = mycursor.fetchone()
