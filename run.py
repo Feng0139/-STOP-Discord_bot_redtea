@@ -68,7 +68,7 @@ async def help(ctx, *, message=None):
     #embed.add_field(name='searchn', value='按 用户名 查找信息.', inline=False)
     #embed.add_field(name='searchu', value='按 UID 查找信息.', inline=False)
 
-    ctx.send(embed=embed)
+    await ctx.send(embed=embed)
 
 
 @bot.command(aliases=['search'])
