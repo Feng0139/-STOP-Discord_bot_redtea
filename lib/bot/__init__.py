@@ -1,5 +1,8 @@
+from datetime import datetime
+
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from discord.ext.commands import Bot as BotBase
+from discord import Embed
 
 PREFIX = '$'
 OWNER_IDS = [341273212656680960]
@@ -32,7 +35,14 @@ class Bot(BotBase):
             print('bot ready')
 
             channel = self.get_channel(727828478719688725)
-            await channel.send('Online!')
+
+            embed  = Embed(
+                Colour = 0xFF0000,
+                timestamp = datetime.now()
+            )
+            embed.add_field(name="Now!", value="Online!!!")
+
+            await channel.send(embed=embed)
 
         else:
             print('bot reconnected')
