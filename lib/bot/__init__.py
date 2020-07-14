@@ -20,11 +20,10 @@ class Bot(BotBase):
     def setup(self):
         try:
             for cog in COGS:
-                print(f'{cog}')
-                if cog.find('./lib/cogs/'):
-                    cog.replace('./lib/cogs/', '')
-                    print(f'{cog}')
-                self.load_extension(f'lib.cogs.{cog}')
+                #if cog.find('./lib/cogs/'):
+                temp = cog.replace('./lib/cogs/', '')
+                print(f'{temp}')
+                self.load_extension(f'lib.cogs.{temp}')
                 print(f'{cog} cog loaded')
 
             print('setup complete')
