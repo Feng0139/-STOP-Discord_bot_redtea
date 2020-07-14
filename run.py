@@ -54,6 +54,8 @@ async def help(ctx, *, message=None):
     """
     Help panel
     """
+    author = ctx.message.author
+
     embed = discord.Embed(
         title = '帮助面板',
         description = 'RedTea 将提供以下所有帮助.',
@@ -61,16 +63,17 @@ async def help(ctx, *, message=None):
     )
     embed.set_author(name='Cyyou!官方聊天室', url='https://discord.gg/SgEAh66', icon_url='https://cdn.discordapp.com/icons/341447602115444746/15d9b7379cb9eb44fc047089769aff81.png?size=512')
     embed.set_thumbnail(url='https://cdn.discordapp.com/icons/341447602115444746/15d9b7379cb9eb44fc047089769aff81.png?size=512')
-    embed.set_footer(text='欢迎来到 Cyyou! 官方聊天室 !')
-    embed.add_field(name='help', value='查询帮助.', inline=False)
-    embed.add_field(name='echo', value='无情复读机.', inline=False)
-    embed.add_field(name='hello', value='Hi!', inline=False)
-    embed.add_field(name='ping', value='Pong!', inline=False)
-    embed.add_field(name='create_time', value='RedTea 的创建时间.', inline=False)
-    #embed.add_field(name='searchn', value='按 用户名 查找信息.', inline=False)
-    #embed.add_field(name='searchu', value='按 UID 查找信息.', inline=False)
+    embed.set_footer(text='__*欢迎来到 Cyyou! 官方聊天室 !*__')
+    embed.add_field(name='$help', value='查询帮助.')
+    embed.add_field(name='$echo', value='无情复读机.')
+    embed.add_field(name='$hello', value='Hi!')
+    embed.add_field(name='$ping', value='Pong!')
+    embed.add_field(name='$create_time', value='RedTea 的创建时间.', inline=False)
+    #embed.add_field(name='$searchn', value='按 用户名 查找信息.', inline=False)
+    #embed.add_field(name='$searchu', value='按 UID 查找信息.', inline=False)
 
-    await ctx.send(embed=embed)
+    #await ctx.send(embed=embed)
+    await bot.send_message(author, embed=embed)
 
 
 @bot.command(aliases=['search'])
