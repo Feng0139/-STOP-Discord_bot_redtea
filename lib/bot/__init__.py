@@ -1,6 +1,5 @@
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from discord.ext.commands import Bot as BotBase
-import json
 
 PREFIX = '$'
 OWNER_IDS = [341273212656680960]
@@ -15,8 +14,9 @@ class Bot(BotBase):
 
     def run(self, version):
         self.VERSION = version
-        key = json.loads(open('../../data/key.json', encoding='uft-8').read())
-        self.TOKEN = key['token']
+        with open('./lib/bot/token.tk', 'r', encoding='utf-8') as tf:
+            self.TOKEN = tf.read()
+            
         print('running bot...')
         super().run(self.TOKEN, reconnect=True)
 
