@@ -15,6 +15,8 @@ key = json.loads(open('key.json', encoding='utf-8').read())
 
 # setting prefix & online status & admin id
 bot = commands.Bot(command_prefix = '$', case_insensitive=True, owner_id='341273212656680960')
+bot.remove_command('help')
+
 bot.config_token = key["token"]
 # bot.config_token = read_token()
 
@@ -47,7 +49,7 @@ async def displayEmbed(ctx, *, message=None):
 
     await ctx.send(embed=embed)
     
-@bot.event
+@bot.command
 async def help(ctx, *, message=None):
     """
     Help panel
