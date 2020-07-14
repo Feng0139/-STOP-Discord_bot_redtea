@@ -43,11 +43,11 @@ async def _ping(ctx):
 
 @bot.command(name='create_time', aliases=['c_t', 'ct'])
 async def _create_time(ctx):
-    await ctx.send(f'{ctx.author.mention} > 2020/04/01 22:55 Done!')
+    await ctx.send('> 2020/04/01 22:55 Done!')
 
 @bot.command()
 async def echo(ctx, *, message=None):
-    message = message or '请提供必要的文字内容.'
+    message = message or '$echo: 请提供必要的文字内容.'
     await ctx.message.delete()
     await ctx.send(message)
 
