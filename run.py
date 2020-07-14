@@ -27,41 +27,25 @@ async def on_ready():
     await bot.change_presence(status=discord.Status.dnd, activity=discord.Game("Command: $help"))
 
 @bot.command()
-async def test(ctx, *, message=None):
+async def displayEmbed(ctx, *, message=None):
     """
-    Test
+    Embed Test
     """
-    try:
-        print(message)
-        sql = "select uid, username, newpoints, postnum, threadnum from `tws_users` where username = '" + message + "';"
+    embed = discord.Embed(
+        title = 'Title',
+        description = 'this is a description.',
+        colour = discord.Color.blue()
+    )
 
-        mycursor.ping(reconnect=True)
+    embed.set_footer(text="this is a footer.")
+    embed.set_image(url='https://www.teeworlds.cn/images/logo.png')
+    embed.set_thumbnail(url='https://www.teeworlds.cn/images/logo.png')
+    embed.set_author(name='Author Name', icon_url='https://www.teeworlds.cn/images/logo.png')
+    embed.add_field(name='Field Name', value='Field Value', inline=False)
+    embed.add_field(name='Field Name', value='Field Value', inline=False)
+    embed.add_field(name='Field Name', value='Field Value', inline=True)
 
-        mycursor.execute(sql)
-        buf = mycursor.fetchone()
-
-        embed = discord.Embed(
-            title = "Title",
-            colour = discord.Colour.red()
-        )
-
-        embed.set_image(url="https://www.teeworlds.cn/uploads/avatars/avatar_1.jpg")
-        embed.set_author(
-            name="Author Name",
-            url="",
-            icon_url=""
-        )
-        embed.set_footer(text="RedTea.")
-        
-        embed.add_field(name="UID", value="1")
-        
-        await bot.say(embed=embed)
-
-    except:
-        mydb = relink_mydb()
-        
-        await ctx.send(f'{ctx.author.mention} 无法查询')
-
+    await ctx.say(embed=embed)
     
 
 @bot.command(aliases=['search'])
