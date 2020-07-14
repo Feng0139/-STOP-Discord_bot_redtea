@@ -16,6 +16,7 @@ async def on_ready():
 
 @bot.command(name='help')
 async def _help(ctx, *, message=None):
+    await ctx.message.delete()
     embed = discord.Embed(
         title = '帮助面板',
         description = 'RedTea 将提供以下所有帮助.',
@@ -29,7 +30,6 @@ async def _help(ctx, *, message=None):
     embed.add_field(name='$hello', value='Hi!')
     embed.add_field(name='$ping', value='Pong!')
     embed.add_field(name='$create_time', value='RedTea 的创建时间.', inline=False)
-
     await ctx.send(embed=embed)
 
 
@@ -43,7 +43,7 @@ async def _ping(ctx):
 
 @bot.command(name='create_time', aliases=['c_t', 'ct'])
 async def _create_time(ctx):
-    await ctx.send(f'{ctx.author.mention} \n > 2020/04/01 22:55 Done!')
+    await ctx.send(f'{ctx.author.mention} > 2020/04/01 22:55 Done!')
 
 @bot.command()
 async def echo(ctx, *, message=None):
