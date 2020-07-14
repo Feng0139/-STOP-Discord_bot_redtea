@@ -18,12 +18,15 @@ class Bot(BotBase):
         super().__init__(command_prefix=PREFIX, owner_ids=OWNER_IDS)
 
     def setup(self):
-        for cog in COGS:
-            print(f'{cog}')
-            self.load_extension(f'lib.cogs.{cog}')
-            print(f'{cog} cog loaded')
+        try:
+            for cog in COGS:
+                print(f'{cog}')
+                self.load_extension(f'lib.cogs.{cog}')
+                print(f'{cog} cog loaded')
 
-        print('setup complete')
+            print('setup complete')
+        except:
+            print('SETUP ERROR')
 
     def run(self, version):
         self.VERSION = version
