@@ -6,7 +6,7 @@ class Fun(Cog):
 
     @Cog.listener()
     async def on_ready(self):
-        #await self.bot.stdout.send("Fun cog ready.")
+        # await self.bot.stdout.send("Fun cog ready.")
         print('fun cog ready')
 
 def setup(bot):

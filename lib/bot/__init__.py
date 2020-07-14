@@ -20,15 +20,13 @@ class Bot(BotBase):
     def setup(self):
         try:
             for cog in COGS:
-                #if cog.find('./lib/cogs/'):
                 temp = cog.replace('./lib/cogs/', '')
-                print(f'{temp}')
                 self.load_extension(f'lib.cogs.{temp}')
-                print(f'{cog} cog loaded')
+                print(f'{temp} cog loaded')
 
             print('setup complete')
         except:
-            print('SETUP ERROR')
+            print('!!!SETUP ERROR!!!')
 
     def run(self, version):
         self.VERSION = version
