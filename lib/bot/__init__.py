@@ -26,7 +26,7 @@ class Bot(BotBase):
     def __init__(self):
         self.PREFIX = PREFIX
         self.ready = False
-        self.cogs_ready = False
+        self.cogs_ready = Ready()
         self.guild = None
         self.scheduler = AsyncIOScheduler()
         super().__init__(command_prefix=PREFIX, owner_ids=OWNER_IDS)
