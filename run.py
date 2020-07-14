@@ -45,7 +45,7 @@ async def displayEmbed(ctx, *, message=None):
     embed.add_field(name='Field Name', value='Field Value', inline=False)
     embed.add_field(name='Field Name', value='Field Value', inline=True)
 
-    await ctx.say(embed=embed)
+    await ctx.send(embed=embed)
     
 
 @bot.command(aliases=['search'])
