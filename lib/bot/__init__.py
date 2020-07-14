@@ -23,6 +23,7 @@ class Bot(BotBase):
                 print(f'{cog}')
                 if cog.find('./lib/cogs/'):
                     cog.replace('./lib/cogs/', '')
+                    print(f'{cog}')
                 self.load_extension(f'lib.cogs.{cog}')
                 print(f'{cog} cog loaded')
 
