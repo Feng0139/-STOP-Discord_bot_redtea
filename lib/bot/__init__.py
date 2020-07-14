@@ -53,7 +53,7 @@ class Bot(BotBase):
             self.stdout = self.get_channel(727828478719688725)
 
             embed  = Embed(
-                Colour = 0xFF0000,
+                colour = 0xFF0000,
                 timestamp = datetime.now()
             )
             embed.add_field(name="Now!", value="Online!!!")
