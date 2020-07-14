@@ -16,18 +16,23 @@ class Bot(BotBase):
         self.VERSION = version
         with open('./lib/bot/token.tk', 'r', encoding='utf-8') as tf:
             self.TOKEN = tf.read()
-            
+
         print('running bot...')
         super().run(self.TOKEN, reconnect=True)
 
     async def on_connect(self):
-        print('Bot connected')
+        print('bot connected')
 
     async def on_disconnect(self):
-        print('Bot disconnected')
+        print('bot disconnected')
 
     async def on_ready(self):
-        pass
+        if not self.ready:
+            self.ready = True
+            print('bot ready')
+
+        else:
+            print('bot reconnected')
 
     async def on_message(self, message):
         pass
