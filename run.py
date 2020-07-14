@@ -23,7 +23,7 @@ async def _help(ctx, *, message=None):
     )
     embed.set_author(name='Cyyou!官方聊天室', url='https://discord.gg/SgEAh66', icon_url='https://cdn.discordapp.com/icons/341447602115444746/15d9b7379cb9eb44fc047089769aff81.png?size=512')
     embed.set_thumbnail(url='https://cdn.discordapp.com/icons/341447602115444746/15d9b7379cb9eb44fc047089769aff81.png?size=512')
-    embed.set_footer(text='__*欢迎来到 Cyyou! 官方聊天室 !*__')
+    embed.set_footer(text='欢迎来到 Cyyou! 官方聊天室 !')
     embed.add_field(name='$help', value='查询帮助.')
     embed.add_field(name='$echo', value='无情复读机.')
     embed.add_field(name='$hello', value='Hi!')
@@ -41,9 +41,9 @@ async def _hello(ctx):
 async def _ping(ctx):
     await ctx.send(f'<@{ctx.author.id}> Pong! {round(bot.latency * 1000)}ms')
 
-@bot.command(name='creatr_time', aliases=['c_t', 'ct'])
-async def _creatr_time(ctx):
-    await ctx.send('2020/04/01 22:55 Done!')
+@bot.command(name='create_time', aliases=['c_t', 'ct'])
+async def _create_time(ctx):
+    await ctx.send(f'{ctx.author.mention} \n > 2020/04/01 22:55 Done!')
 
 @bot.command()
 async def echo(ctx, *, message=None):
