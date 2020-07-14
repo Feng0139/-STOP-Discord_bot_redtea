@@ -49,7 +49,7 @@ async def displayEmbed(ctx, *, message=None):
 
     await ctx.send(embed=embed)
     
-@bot.command
+@bot.command()
 async def help(ctx, *, message=None):
     """
     Help panel
