@@ -1,7 +1,8 @@
-from discord import Embed, discord
 from discord.utils import get
 from discord.ext.commands import Cog
 from discord.ext.commands import command
+from discord import Embed
+import discord
 
 # def syntax(command):
 #     cmd_and_aliases = "|".join([str(command), *command.aliases])

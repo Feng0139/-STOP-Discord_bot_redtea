@@ -5,7 +5,8 @@ from glob import glob
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from discord.ext.commands import Bot as BotBase
 from discord.ext import commands
-from discord import Embed, discord
+from discord import Embed
+import discord
 
 PREFIX = '$'
 OWNER_IDS = [341273212656680960]
