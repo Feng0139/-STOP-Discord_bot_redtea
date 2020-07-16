@@ -4,7 +4,7 @@ from glob import glob
 
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from discord.ext.commands import Bot as BotBase
-from discord import Embed
+import discord
 
 PREFIX = '$'
 OWNER_IDS = [341273212656680960]
@@ -31,6 +31,8 @@ class Bot(BotBase):
         self.cogs_ready = Ready()
         self.guild = None
         self.scheduler = AsyncIOScheduler()
+        self.remove_command('help')
+        self.change_presence(activity=discord.Game("Command: $help"), status=discord.Status.dnd)
         super().__init__(command_prefix=PREFIX, owner_ids=OWNER_IDS)
 
     def setup(self):
@@ -75,8 +77,6 @@ class Bot(BotBase):
 
             while not self.cogs_ready.all_ready():
                 await sleep(0.5)
-
-            #self.change_presence(status=discord.Status.dnd, activity=discord.Game("Command: $help"))
 
             self.ready = True
             await self.stdout.send(embed=embed)

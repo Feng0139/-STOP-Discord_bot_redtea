@@ -18,29 +18,29 @@ class Cmd(Cog):
     async def _create_time(self, ctx):
         await ctx.send('> 2020/04/01 22:55 Done!')
 
-    @command(name='echo', aliases=['say'])
+    @command(name='echo', aliases=['say'], hidden=True)
     async def _echo(self, ctx, *, message=None):
         message = message or '$echo: 请提供必要的文字内容.'
         await ctx.message.delete()
         await ctx.send(message)
 
-    # @command(name='help', aliases=['command','cmd'], hidden=False)
-    # async def _help(self, ctx):
-    #     await ctx.message.delete()
-    #     embed = discord.Embed(
-    #         title = '帮助面板',
-    #         description = 'RedTea 将提供以下所有帮助.',
-    #         colour = discord.Color.red()
-    #     )
-    #     embed.set_author(name='Cyyou! 官方聊天室', url='self.guild.icon_url', icon_url='self.guild.icon_url')
-    #     embed.set_thumbnail(url='self.guild.icon_url')
-    #     embed.set_footer(text='欢迎来到 Cyyou! 官方聊天室 !')
-    #     embed.add_field(name='$help', value='查询帮助.')
-    #     embed.add_field(name='$echo', value='无情复读机.')
-    #     embed.add_field(name='$hello', value='Hi!')
-    #     embed.add_field(name='$ping', value='Pong! 39ms')
-    #     embed.add_field(name='$create_time', value='RedTea 的创建时间.', inline=False)
-    #     await ctx.send(embed=embed)
+    @command(name='help', aliases=['command','cmd'], hidden=False)
+    async def _help(self, ctx):
+        await ctx.message.delete()
+        embed = discord.Embed(
+            title = '帮助面板',
+            description = 'RedTea 将提供以下所有帮助.',
+            colour = discord.Color.red()
+        )
+        embed.set_author(name='Cyyou! 官方聊天室', url='self.guild.icon_url', icon_url='self.guild.icon_url')
+        embed.set_thumbnail(url='self.guild.icon_url')
+        embed.set_footer(text='欢迎来到 Cyyou! 官方聊天室 !')
+        embed.add_field(name='$help', value='查询帮助.')
+        embed.add_field(name='$echo', value='无情复读机.')
+        embed.add_field(name='$hello', value='Hi!')
+        embed.add_field(name='$ping', value='Pong! 39ms')
+        embed.add_field(name='$create_time', value='RedTea 的创建时间.', inline=False)
+        await ctx.send(embed=embed)
 
     @Cog.listener()
     async def on_ready(self):
