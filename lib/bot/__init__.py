@@ -38,7 +38,7 @@ class Bot(BotBase):
             for cog in COGS:
                 temp = cog.replace('./lib/cogs/', '')
                 self.load_extension(f'lib.cogs.{temp}')
-                print(f'{temp} cog loaded')
+                print(f'{temp} cog loaded') 
 
             print('setup complete')
         except:
