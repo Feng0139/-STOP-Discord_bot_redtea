@@ -32,8 +32,6 @@ class Bot(BotBase):
         self.cogs_ready = Ready()
         self.guild = None
         self.scheduler = AsyncIOScheduler()
-        self.remove_command('help')
-        self.change_presence(activity=discord.Game("Command: $help"), status=discord.Status.dnd)
         super().__init__(command_prefix=PREFIX, owner_ids=OWNER_IDS)
 
     def setup(self):
@@ -69,12 +67,15 @@ class Bot(BotBase):
             self.guild = self.get_guild(341447602115444746)
             self.stdout = self.get_channel(727828478719688725)
 
-            embed  = Embed(
+            embed  = discord.Embed(
                 colour = 0xCC0000,
                 timestamp = datetime.now()
             )
             embed.add_field(name="Now!", value="Online!!!")
             embed.set_thumbnail(url=self.guild.icon_url)
+
+            await self.remove_command('help')
+            await self.change_presence(activity=discord.Game("Command: $help"), status=discord.Status.dnd)
 
             while not self.cogs_ready.all_ready():
                 await sleep(0.5)
