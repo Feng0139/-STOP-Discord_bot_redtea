@@ -24,11 +24,11 @@ class Cmd(Cog):
         await ctx.message.delete()
         await ctx.send(message)
 
-    @command(name='help', aliases=['command','cmd'], hidden=False)
+    @command(name='cmd', aliases=['command'], hidden=False)
     async def _help(self, ctx):
         await ctx.message.delete()
         embed = discord.Embed(
-            title = '帮助面板',
+            title = '命令面板',
             description = 'RedTea 将提供以下所有帮助.',
             colour = discord.Color.red()
         )
