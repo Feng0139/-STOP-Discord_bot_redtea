@@ -5,7 +5,7 @@ from glob import glob
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from discord.ext.commands import Bot as BotBase
 from discord.ext import commands
-import discord
+from discord import Embed, discord
 
 PREFIX = '$'
 OWNER_IDS = [341273212656680960]
@@ -67,14 +67,14 @@ class Bot(BotBase):
             self.guild = self.get_guild(341447602115444746)
             self.stdout = self.get_channel(727828478719688725)
 
-            await self.change_presence(activity=discord.Game("Command: $helps"), status=discord.Status.dnd)
+            await self.change_presence(activity=discord.Game("Command: $help"), status=discord.Status.dnd)
 
             while not self.cogs_ready.all_ready():
                 await sleep(0.5)
 
             self.ready = True
-            # embed  = discord.Embed(
-            #     colour = 0xCC0000,
+            # embed  = Embed(
+            #     colour = discord.Color.red(),
             #     timestamp = datetime.now()
             # )
             # embed.add_field(name="Now!", value="Online!!!")
