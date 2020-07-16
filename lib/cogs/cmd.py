@@ -8,25 +8,21 @@ class Cmd(Cog):
 
     @command(name='hello', aliases=['hi'])
     async def _hello(self, ctx):
-        await ctx.send(f'{ctx.author.mention} hi!')
+        await ctx.send(f'{ctx.author.mention} Hi!')
 
-    # @command(name='hello', aliases=['hi'])
-    # async def _hello(self, ctx):
-    #     await ctx.send(f'{ctx.author.mention} Hi!')
+    @command(name='ping')
+    async def _ping(self, ctx):
+        await ctx.send(f'<@{ctx.author.id}> Pong! {round(bot.latency * 1000)}ms')
 
-    # @command(name='ping')
-    # async def _ping(self, ctx):
-    #     await ctx.send(f'<@{ctx.author.id}> Pong! {round(bot.latency * 1000)}ms')
+    @command(name='create_time', aliases=['c_t', 'ct'])
+    async def _create_time(self, ctx):
+        await ctx.send('> 2020/04/01 22:55 Done!')
 
-    # @command(name='create_time', aliases=['c_t', 'ct'])
-    # async def _create_time(self, ctx):
-    #     await ctx.send('> 2020/04/01 22:55 Done!')
-
-    # @command(name='echo', aliases=['say'])
-    # async def _echo(self, ctx, *, message=None):
-    #     message = message or '$echo: 请提供必要的文字内容.'
-    #     await ctx.message.delete()
-    #     await ctx.send(message)
+    @command(name='echo', aliases=['say'])
+    async def _echo(self, ctx, *, message=None):
+        message = message or '$echo: 请提供必要的文字内容.'
+        await ctx.message.delete()
+        await ctx.send(message)
 
     # @command(name='help', aliases=['command','cmd'], hidden=False)
     # async def _help(self, ctx):
