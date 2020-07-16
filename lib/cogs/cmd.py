@@ -34,8 +34,8 @@ class Cmd(Cog):
             description = 'RedTea 将提供以下所有帮助.',
             colour = discord.Color.red()
         )
-        embed.set_author(name='Cyyou! 官方聊天室', url='self.guild.icon_url', icon_url='self.guild.icon_url')
-        embed.set_thumbnail(url='self.guild.icon_url')
+        embed.set_author(name='Cyyou! 官方聊天室', url='https://discord.gg/SgEAh66', icon_url=self.guild.icon_url)
+        embed.set_thumbnail(url=self.guild.icon_url)
         embed.set_footer(text='欢迎来到 Cyyou! 官方聊天室 !')
         embed.add_field(name='$help', value='查询帮助.')
         embed.add_field(name='$echo', value='无情复读机.')
