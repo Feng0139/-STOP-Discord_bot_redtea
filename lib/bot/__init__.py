@@ -76,6 +76,8 @@ class Bot(BotBase):
             while not self.cogs_ready.all_ready():
                 await sleep(0.5)
 
+            self.change_presence(status=discord.Status.dnd, activity=discord.Game("Command: $help"))
+
             self.ready = True
             await self.stdout.send(embed=embed)
             print(' bot ready')
