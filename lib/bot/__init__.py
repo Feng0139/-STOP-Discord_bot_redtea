@@ -4,6 +4,7 @@ from glob import glob
 
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from discord.ext.commands import Bot as BotBase
+from discord.ext import commands
 import discord
 
 PREFIX = '$'
