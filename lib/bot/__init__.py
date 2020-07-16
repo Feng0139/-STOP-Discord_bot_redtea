@@ -74,7 +74,6 @@ class Bot(BotBase):
             embed.add_field(name="Now!", value="Online!!!")
             embed.set_thumbnail(url=self.guild.icon_url)
 
-            await self.remove_command('help')
             await self.change_presence(activity=discord.Game("Command: $help"), status=discord.Status.dnd)
 
             while not self.cogs_ready.all_ready():
