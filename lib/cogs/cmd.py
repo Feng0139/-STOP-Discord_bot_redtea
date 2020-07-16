@@ -14,7 +14,7 @@ class Cmd(Cog):
 
     @command(name='ping')
     async def _ping(self, ctx):
-        await ctx.send(f'<@{ctx.author.id}> Pong! {round(bot.latency * 1000)}ms')
+        await ctx.send(f'<@{ctx.author.id}> Pong! {round(self.bot.latency * 1000)}ms')
 
     @command(name='create_time', aliases=['c_t', 'ct'])
     async def _create_time(self, ctx):
@@ -26,7 +26,7 @@ class Cmd(Cog):
         await ctx.message.delete()
         await ctx.send(message)
 
-    @command(name='helps', aliases=['command', 'cmd'], hidden=False)
+    @command(name='helps', aliases=['commands', 'cmds'], hidden=False)
     async def _help(self, ctx):
         await ctx.message.delete()
         embed = discord.Embed(
@@ -37,7 +37,7 @@ class Cmd(Cog):
         embed.set_author(name='Cyyou! 官方聊天室', url='https://discord.gg/SgEAh66', icon_url=self.bot.guild.icon_url)
         embed.set_thumbnail(url=self.bot.guild.icon_url)
         embed.set_footer(text='欢迎来到 Cyyou! 官方聊天室 !')
-        embed.add_field(name='$help', value='查询帮助.')
+        embed.add_field(name='$helps', value='查询帮助.')
         embed.add_field(name='$echo', value='无情复读机.')
         embed.add_field(name='$hello', value='Hi!')
         embed.add_field(name='$ping', value='Pong! 39ms')
