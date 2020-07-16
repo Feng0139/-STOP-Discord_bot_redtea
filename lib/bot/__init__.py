@@ -67,20 +67,19 @@ class Bot(BotBase):
             self.guild = self.get_guild(341447602115444746)
             self.stdout = self.get_channel(727828478719688725)
 
-            embed  = discord.Embed(
-                colour = 0xCC0000,
-                timestamp = datetime.now()
-            )
-            embed.add_field(name="Now!", value="Online!!!")
-            embed.set_thumbnail(url=self.guild.icon_url)
-
             await self.change_presence(activity=discord.Game("Command: $helps"), status=discord.Status.dnd)
 
             while not self.cogs_ready.all_ready():
                 await sleep(0.5)
 
             self.ready = True
-            await self.stdout.send(embed=embed)
+            # embed  = discord.Embed(
+            #     colour = 0xCC0000,
+            #     timestamp = datetime.now()
+            # )
+            # embed.add_field(name="Now!", value="Online!!!")
+            # embed.set_thumbnail(url=self.guild.icon_url)
+            # await self.stdout.send(embed=embed)
             print(' bot ready')
         else:
             print('bot reconnected')
