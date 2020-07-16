@@ -13,7 +13,9 @@ COGS = [path.split("\\")[-1][:-3] for path in glob('./lib/cogs/*.py')]
 class Ready(object):
     def __init__(self):
         for cog in COGS:
-            setattr(self, cog, False)
+            temp = cog.replace('./lib/cogs/', '')
+            print(f'Ready INIT: {cog} && {temp}')
+            setattr(self, temp, False)
     
     def ready_up(self, cog):
         setattr(self, cog, True)
@@ -67,7 +69,6 @@ class Bot(BotBase):
             embed  = Embed(
                 colour = 0xCC0000,
                 timestamp = datetime.now()
-
             )
             embed.add_field(name="Now!", value="Online!!!")
             embed.set_thumbnail(url=self.guild.icon_url)
