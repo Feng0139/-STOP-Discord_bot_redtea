@@ -1,3 +1,5 @@
+from random import choice
+
 from discord.ext.commands import Cog
 from discord.ext.commands import command
 import discord
@@ -8,7 +10,7 @@ class Cmd(Cog):
 
     @command(name='hello', aliases=['hi'])
     async def _hello(self, ctx):
-        await ctx.send(f'{ctx.author.mention} Hi!')
+        await ctx.send(f"{ctx.author.mention} {choice(('Hello', 'Hi', 'Hey', 'Hiya'))}{choice(('!', '~', '?', '...'))}")
 
     @command(name='ping')
     async def _ping(self, ctx):
@@ -24,7 +26,7 @@ class Cmd(Cog):
         await ctx.message.delete()
         await ctx.send(message)
 
-    @command(name='cmd', aliases=['command'], hidden=False)
+    @command(name='helps', aliases=['command', 'cmd'], hidden=False)
     async def _help(self, ctx):
         await ctx.message.delete()
         embed = discord.Embed(
