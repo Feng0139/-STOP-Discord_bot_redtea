@@ -16,7 +16,7 @@ class Cmd(Cog):
 
             await ctx.send(f'{ctx.author.mention}\n> ' + ' + '.join([str(r) for r in rolls]) + f' = {sum(rolls)}')
         else:
-            await ctx.send('生成错误，请尝试少一点的骰子数量.')
+            await ctx.send(f'{ctx.author.mention}\n> 生成错误，请尝试少一点的骰子数量.')
 
     @command(name='hello', aliases=['hi'])
     async def _hello(self, ctx):
