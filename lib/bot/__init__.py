@@ -78,20 +78,28 @@ class Bot(BotBase):
         raise
 
     async def on_command_error(self, ctx, exc):
+        embed = Embed(
+            colour = discord.Color.red(),
+            timestamp = datetime.now()
+        )
+        embed.set_thumbnail(url=self.bot.guild.icon_url)
+        
         if any([isinstance(error, exc) for error in IGNORE_EXCEPTIONS]):
             pass
 
         elif isinstance(exc, MissingRequiredArgument):
-            await ctx.send('有一个或多个必填的值是空的.')
+            embed.add_field(name='Error',value='有一个或多个必填的值是空的.')
 
         elif isinstance(exc.original, HTTPException):
-            await ctx.send('无法发送消息.')
+            embed.add_field(name='Error',value='无法发送消息.')
 
         elif isinstance(exc.original, Forbidden):
-            await ctx.send('没有权限执行.')
+            embed.add_field(name='Error',value='没有权限执行.')
 
         else:
             raise exc.original
+
+        await ctx.send(embed=embed)
 
     async def on_ready(self):
         if not self.ready:

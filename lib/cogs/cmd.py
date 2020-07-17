@@ -1,7 +1,9 @@
 from random import choice, randint
+from datetime import datetime
 
 from discord.ext.commands import Cog
 from discord.ext.commands import command
+from discord import Embed
 import discord
 
 class Cmd(Cog):
@@ -11,12 +13,20 @@ class Cmd(Cog):
     @command(name='roll', aliases=['dice'])
     async def _roll(self, ctx, die_string: str):
         dice, value = (int(term) for term in die_string.split('d'))
-        if dice <= 39:
-            rolls = [randint(1, value) for i in range(dice)]
 
-            await ctx.send(f'{ctx.author.mention}\n> ' + ' + '.join([str(r) for r in rolls]) + f' = {sum(rolls)}')
+        embed = Embed(
+            title = f'{ctx.author}',
+            colour = discord.Color.red(),
+            timestamp = datetime.now()
+        )
+
+        if dice < 40:
+            rolls = [randint(1, value) for i in range(dice)]
+            embed.add_field(name=f'{die_string} = {sum(rolls)}',value=' + '.join([str(r) for r in rolls]) + f' = {sum(rolls)}')
         else:
-            await ctx.send(f'{ctx.author.mention}\n> 生成错误，请尝试少一点的骰子数量.')
+            embed.add_field(name='Error',value='生成错误，请尝试少一点的骰子数量.')
+        
+        await ctx.send(embed=embed)
 
     @command(name='hello', aliases=['hi'])
     async def _hello(self, ctx):
@@ -24,7 +34,14 @@ class Cmd(Cog):
 
     @command(name='ping')
     async def _ping(self, ctx):
-        await ctx.send(f'<@{ctx.author.id}> Pong! {round(self.bot.latency * 1000)}ms')
+        embed = Embed(
+            title = f'{ctx.author}',
+            colour = discord.Color.red(),
+            timestamp = datetime.now()
+        )
+        embed.add_field(value=f'Pong! {round(self.bot.latency * 1000)}ms.')
+        # await ctx.send(f'<@{ctx.author.id}> Pong! {round(self.bot.latency * 1000)}ms')
+        await ctx.send(embed=embed)
 
     @command(name='create_time', aliases=['c_t', 'ct'])
     async def _create_time(self, ctx):
