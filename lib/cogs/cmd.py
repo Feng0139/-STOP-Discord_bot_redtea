@@ -18,7 +18,7 @@ class Cmd(Cog):
             colour = discord.Color.red(),
             timestamp = datetime.now()
         )
-        embed.set_author(name=f'{ctx.author.display_name}')
+        embed.set_author(name=f'{ctx.author.display_name} ( {ctx.author} )', icon_url=f'{ctx.author.avatar_url}')
         
 
         if dice < 40 and value <= 100 and dice > 0 and value > 0:
@@ -26,6 +26,7 @@ class Cmd(Cog):
             embed.add_field(name=f'{die_string} = {sum(rolls)}',value='( ' + ' + '.join([str(r) for r in rolls]) + ' )')
         else:
             embed.add_field(name='Error',value='骰子数量不超过 40, 骰子值不超过 100.\n同时两者不少于 0.')
+            embed.set_footer(text='Tips: $roll 1d6')
         
         await ctx.send(embed=embed)
 
