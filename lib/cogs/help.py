@@ -7,43 +7,43 @@ from discord.utils import get
 from discord import Embed
 import discord
 
-def syntax(command):
-    cmd_and_aliases = '|'.join([str(command), *command.aliases])
-    params = []
+# def syntax(command):
+#     cmd_and_aliases = '|'.join([str(command), *command.aliases])
+#     params = []
 
-    for key, value in command.paramas.items():
-        if key not in ('self', 'ctx'):
-            params.append(f'[{key}]' if 'NoneType' in str(value) else f'<{key}>')
+#     for key, value in command.paramas.items():
+#         if key not in ('self', 'ctx'):
+#             params.append(f'[{key}]' if 'NoneType' in str(value) else f'<{key}>')
 
-    params = ' '.join(params)
+#     params = ' '.join(params)
 
-    return f"```{cmd_and_aliases} {params}```"
+#     return f"```{cmd_and_aliases} {params}```"
 
 class Help(Cog):
     def __init__(self, bot):
         self.bot = bot
         self.bot.remove_command('help')
 
-    async def cmd_help(self, ctx, command):
-        embed = Embed(
-            title = f'`{command}` 帮助说明',
-            description = syntax(command),
-            colour = discord.Color.red(),
-            timestamp = datetime.now()
-        )
-        embed.add_field(name='命令描述', value=command.help)
-        await ctx.send(embed=embed)
+    # async def cmd_help(self, ctx, command):
+    #     embed = Embed(
+    #         title = f'`{command}` 帮助说明',
+    #         description = syntax(command),
+    #         colour = discord.Color.red(),
+    #         timestamp = datetime.now()
+    #     )
+    #     embed.add_field(name='命令描述', value=command.help)
+    #     await ctx.send(embed=embed)
     
-    @command(name='sh')
-    async def show_help(self, ctx, cmd: Optional[str]):
-        """显示这条信息."""
-        if cmd is None:
-            pass
-        else:
-            if (command := get(self.bot.commands, name=cmd)):
-                await self.cmd_help(ctx, command)
-            else:
-                await ctx.send('未找到此命令.')
+    # @command(name='sh')
+    # async def show_help(self, ctx, cmd: Optional[str]):
+    #     """显示这条信息."""
+    #     if cmd is None:
+    #         pass
+    #     else:
+    #         if (command := get(self.bot.commands, name=cmd)):
+    #             await self.cmd_help(ctx, command)
+    #         else:
+    #             await ctx.send('未找到此命令.')
 
 
     @command(name='help', aliases=['command', 'cmd'], hidden=False)
