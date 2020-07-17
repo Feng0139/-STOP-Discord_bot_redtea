@@ -18,13 +18,13 @@ class Cmd(Cog):
             colour = discord.Color.red(),
             timestamp = datetime.now()
         )
-        embed.set_author(name=f'{ctx.author}', icon_url=ctx.guild.icon_url)
+        embed.set_author(name=f'{ctx.author}', icon_url=ctx.author.guild.icon_url)
 
         if dice < 40 and value <= 100 and dice > 0 and value > 0:
             rolls = [randint(1, value) for i in range(dice)]
             embed.add_field(name=f'{die_string} = {sum(rolls)}',value='( ' + ' + '.join([str(r) for r in rolls]) + ' )')
         else:
-            embed.add_field(name='Error',value='生成错误，骰子数量不超过 40, 骰子值不超过 100.')
+            embed.add_field(name='生成错误',value='骰子数量不超过 40, 骰子值不超过 100.\n同时两者不可少于 0.')
         
         await ctx.send(embed=embed)
 
