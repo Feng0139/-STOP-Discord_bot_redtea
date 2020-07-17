@@ -8,16 +8,16 @@ from discord import Embed
 import discord
 
 def syntax(command):
-    cmd_and_aliases = '|'.join([str(command), *command.aliases])
-    params = []
+	cmd_and_aliases = "|".join([str(command), *command.aliases])
+	params = []
 
-    for key, value in command.params.items():
-        if key not in ('self', 'ctx'):
-            params.append(f'[{key}]' if 'NoneType' in str(value) else f'<{key}>')
+	for key, value in command.params.items():
+		if key not in ("self", "ctx"):
+			params.append(f"[{key}]" if "NoneType" in str(value) else f"<{key}>")
 
-    params = ' '.join(params)
+	params = " ".join(params)
 
-    return f"```{cmd_and_aliases} {params}```"
+	return f"`{cmd_and_aliases} {params}`"
 
 class Help(Cog):
     def __init__(self, bot):
@@ -46,25 +46,25 @@ class Help(Cog):
                 await ctx.send('未找到此命令.')
 
 
-    @command(name='help', aliases=['command', 'cmd'], hidden=False)
-    async def _help(self, ctx):
-        # await ctx.message.delete()
-        embed = Embed(
-            title = '命令面板',
-            description = 'RedTea 将提供以下所有帮助.',
-            colour = discord.Color.red(),
-            timestamp = datetime.now()
-        )
-        embed.set_author(name='Cyyou! 官方聊天室', url='https://discord.gg/SgEAh66', icon_url=self.bot.guild.icon_url)
-        embed.set_thumbnail(url=self.bot.guild.icon_url)
-        embed.set_footer(text='欢迎使用命令面板.')
-        embed.add_field(name='$help', value='查询帮助.')
-        # embed.add_field(name='$echo', value='无情复读机.')
-        embed.add_field(name='$hello', value='Hi!')
-        embed.add_field(name='$ping', value='Pong! 39ms')
-        embed.add_field(name='$roll', value='掷骰子($roll 1d6)', inline=False)
-        embed.add_field(name='$create_time', value='RedTea 的创建时间.', inline=False)
-        await ctx.send(embed=embed)
+    # @command(name='help', aliases=['command', 'cmd'], hidden=False)
+    # async def _help(self, ctx):
+    #     # await ctx.message.delete()
+    #     embed = Embed(
+    #         title = '命令面板',
+    #         description = 'RedTea 将提供以下所有帮助.',
+    #         colour = discord.Color.red(),
+    #         timestamp = datetime.now()
+    #     )
+    #     embed.set_author(name='Cyyou! 官方聊天室', url='https://discord.gg/SgEAh66', icon_url=self.bot.guild.icon_url)
+    #     embed.set_thumbnail(url=self.bot.guild.icon_url)
+    #     embed.set_footer(text='欢迎使用命令面板.')
+    #     embed.add_field(name='$help', value='查询帮助.')
+    #     # embed.add_field(name='$echo', value='无情复读机.')
+    #     embed.add_field(name='$hello', value='Hi!')
+    #     embed.add_field(name='$ping', value='Pong! 39ms')
+    #     embed.add_field(name='$roll', value='掷骰子($roll 1d6)', inline=False)
+    #     embed.add_field(name='$create_time', value='RedTea 的创建时间.', inline=False)
+    #     await ctx.send(embed=embed)
 
     @Cog.listener()
     async def on_ready(self):
