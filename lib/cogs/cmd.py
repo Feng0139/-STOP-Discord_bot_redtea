@@ -1,4 +1,4 @@
-from random import choice
+from random import choice, randint
 
 from discord.ext.commands import Cog
 from discord.ext.commands import command
@@ -7,6 +7,16 @@ import discord
 class Cmd(Cog):
     def __init__(self, bot):
         self.bot = bot
+
+    @command(name='roll', aliases=['dice'])
+    async def _roll(self, ctx, die_string: str):
+        dice, value = (int(term) for term in die_string.split('d'))
+        if dice <= 39:
+            rolls = [randint(1, value) for i in range(dice)]
+
+            await ctx.send(f'{ctx.author.mention}\n> ' + ' + '.join([str(r) for r in rolls]) + f' = {sum(rolls)}')
+        else:
+            await ctx.send('生成错误，请尝试少一点的骰子数量.')
 
     @command(name='hello', aliases=['hi'])
     async def _hello(self, ctx):

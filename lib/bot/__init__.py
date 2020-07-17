@@ -4,13 +4,18 @@ from glob import glob
 
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from discord.ext.commands import Bot as BotBase
+from discord.ext.commands import CommandNotFound
 from discord.ext import commands
 from discord import Embed
 import discord
 
+from discord.ext.commands.errors import BadArgument, MissingRequiredArgument
+from discord.errors import Forbidden, HTTPException
+
 PREFIX = '$'
 OWNER_IDS = [341273212656680960]
 COGS = [path.split("\\")[-1][:-3] for path in glob('./lib/cogs/*.py')]
+IGNORE_EXCEPTIONS = (CommandNotFound, BadArgument)
 
 class Ready(object):
     def __init__(self):
@@ -62,6 +67,31 @@ class Bot(BotBase):
 
     async def on_disconnect(self):
         print('bot disconnected')
+
+    async def on_error(self, err, *args, **kwargs):
+        if err == "on_command_error":
+            await args[0].send('Something went wrong.')
+        else:
+            channel = self.get_channel(510468583290175491)
+            await channel.send('RedTea bot 发生了一些错误.')
+
+        raise
+
+    async def on_command_error(self, ctx, exc):
+        if any([isinstance(error, exc) for error in IGNORE_EXCEPTIONS]):
+            pass
+
+        elif isinstance(exc, MissingRequiredArgument):
+            await ctx.send('有一个或多个必填的值是空的.')
+
+        elif isinstance(exc.original, HTTPException):
+            await ctx.send('无法发送消息.')
+
+        elif isinstance(exc.original, Forbidden):
+            await ctx.send('没有权限执行.')
+
+        else:
+            raise exc.original
 
     async def on_ready(self):
         if not self.ready:
