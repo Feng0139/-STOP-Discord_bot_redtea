@@ -52,7 +52,7 @@ class Help(Cog):
         # embed.add_field(name='$echo', value='无情复读机.')
         embed.add_field(name='$hello', value='Hi!')
         embed.add_field(name='$ping', value='Pong! 39ms')
-        embed.add_field(name='$roll', value='掷骰子($roll 1d6)')
+        embed.add_field(name='$roll', value='掷骰子($roll 1d6)', inline=False)
         embed.add_field(name='$create_time', value='RedTea 的创建时间.', inline=False)
         await ctx.send(embed=embed)
 
