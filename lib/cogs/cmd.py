@@ -18,7 +18,7 @@ class Cmd(Cog):
             colour = discord.Color.red(),
             timestamp = datetime.now()
         )
-        embed.set_author(name=f'{ctx.author}', icon_url=ctx.author.icon_url)
+        embed.set_author(name=f'{ctx.author.display_name}')
         
 
         if dice < 40 and value <= 100 and dice > 0 and value > 0:
