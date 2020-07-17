@@ -8,14 +8,14 @@ from discord import Embed
 import discord
 
 def syntax(command):
-    cmd_and_aliases = "|".join([str(command), *command.aliases])
+    cmd_and_aliases = '|'.join([str(command), *command.aliases])
     params = []
 
     for key, value in command.paramas.items():
         if key not in ('self', 'ctx'):
             params.append(f'[{key}]' if 'NoneType' in str(value) else f'<{key}>')
 
-    params = " ".join(params)
+    params = ' '.join(params)
 
     return f"```{cmd_and_aliases} {params}```"
 
@@ -35,6 +35,7 @@ class Helps(Cog):
 
     @command(name='helps')
     async def _help(self, ctx, cmd: Optional[str]):
+        """显示这条信息."""
         if cmd is None:
             pass
         else:
