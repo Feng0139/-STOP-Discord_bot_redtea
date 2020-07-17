@@ -47,7 +47,7 @@ class Help(Cog):
         )
         embed.set_author(name='Cyyou! 官方聊天室', url='https://discord.gg/SgEAh66', icon_url=self.bot.guild.icon_url)
         embed.set_thumbnail(url=self.bot.guild.icon_url)
-        embed.set_footer(text='欢迎来到 Cyyou! 官方聊天室 !')
+        embed.set_footer(text='命令前缀: $     ')
         embed.add_field(name='$help', value='查询帮助.')
         # embed.add_field(name='$echo', value='无情复读机.')
         embed.add_field(name='$hello', value='Hi!')
