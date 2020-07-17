@@ -26,7 +26,7 @@ class Help(Cog):
 
     async def cmd_help(self, ctx, command):
         embed = Embed(
-            titl = f'`{command}` 帮助说明',
+            title = f'`{command}` 帮助说明',
             description = syntax(command),
             colour = discord.Color.red(),
             timestamp = datetime.now()
