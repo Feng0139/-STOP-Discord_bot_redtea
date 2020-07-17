@@ -11,7 +11,7 @@ def syntax(command):
     cmd_and_aliases = "|".join([str(command), *command.aliases])
     params = []
 
-    for key, value in command.paramas.item():
+    for key, value in command.paramas.items():
         if key not in ('self', 'ctx'):
             params.append(f'[{key}]' if 'NoneType' in str(value) else f'<{key}>')
 
