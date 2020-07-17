@@ -22,6 +22,7 @@ def syntax(command):
 class Hs(Cog):
     def __init__(self, bot):
         self.bot = bot
+        self.bot.remove_command('help')
 
     async def cmd_help(self, ctx, command):
         embed = Embed(
@@ -34,7 +35,7 @@ class Hs(Cog):
         await ctx.send(embed=embed)
 
     @command(name='helps')
-    async def _help(self, ctx, cmd: Optional[str]):
+    async def show_help(self, ctx, cmd: Optional[str]):
         """显示这条信息."""
         if cmd is None:
             pass
