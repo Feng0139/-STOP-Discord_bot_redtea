@@ -34,8 +34,8 @@ class Help(Cog):
         embed.add_field(name='命令描述', value=command.help)
         await ctx.send(embed=embed)
     
-    @command(name='helps')
-    async def _helps(self, ctx, cmd: Optional[str]):
+    @command(name='sh')
+    async def show_help(self, ctx, cmd: Optional[str]):
         """显示这条信息."""
         if cmd is None:
             pass
