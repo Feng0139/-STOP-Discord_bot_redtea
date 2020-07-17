@@ -82,7 +82,7 @@ class Bot(BotBase):
             colour = discord.Color.red(),
             timestamp = datetime.now()
         )
-        embed.set_thumbnail(url=self.bot.guild.icon_url)
+        embed.set_thumbnail(url=self.guild.icon_url)
         
         if any([isinstance(error, exc) for error in IGNORE_EXCEPTIONS]):
             pass
