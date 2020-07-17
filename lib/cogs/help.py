@@ -38,7 +38,7 @@ class Help(Cog):
 
     @command(name='help', aliases=['command', 'cmd'], hidden=False)
     async def _help(self, ctx):
-        await ctx.message.delete()
+        # await ctx.message.delete()
         embed = Embed(
             title = '命令面板',
             description = 'RedTea 将提供以下所有帮助.',
