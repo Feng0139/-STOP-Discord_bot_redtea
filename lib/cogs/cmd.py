@@ -42,7 +42,7 @@ class Cmd(Cog):
 
             plNameStr += '`'
 
-            embed.add_field(name=f'已查询到有 {plNum} 位玩家在 {plServer} 中...', value=f"{plNameStr}", inline=False)
+            embed.add_field(name=f'已查询到有 {plNum} 位玩家在 {plServer} 个 CHN 服务器中...', value=f"{plNameStr}", inline=False)
             await ctx.send(embed=embed)
         else:
             embed = Embed(
