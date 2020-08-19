@@ -62,6 +62,18 @@ class Cmd(Cog):
         if(serverList['servers'] != []):
             for server in serverList['servers']:
                 if( server['country'] == 'China' and server['num_players'] > 0 and server['players'] != []):
+                    plNameStr = '`|'
+                    plNum = 0
+                
+                    for player in server['players']:
+                        plNameStr += f" {player['name']} |"
+                        plNum += 1
+
+                    if (plNum <= 0):
+                        continue
+                    
+                    plNameStr += '`'
+
                     embed = Embed(
                     colour = discord.Color.red(),
                     timestamp = datetime.now()
@@ -70,17 +82,8 @@ class Cmd(Cog):
                     embed.add_field(name=f"{server['name']}", value=f"`Server IP:` `{server['server_ip']}:{server['server_port']}`", inline=False)
                     embed.add_field(name="游戏版本", value=f"`{server['version']}`")
                     embed.add_field(name=f"当前地图", value=f"`{server['map']}`")
-
-                    plNameStr = '`|'
-                    plNum = 0
-                
-                    for player in server['players']:
-                        plNameStr += f" {player['name']} |"
-                        plNum += 1
-
-                    plNameStr += '`'
-
                     embed.add_field(name=f'玩家列表( {plNum} 位 )', value=f"{plNameStr}", inline=False)
+
                     await ctx.send(embed=embed)
         else:
             embed = Embed(
@@ -101,6 +104,18 @@ class Cmd(Cog):
         if(serverList['servers'] != []):
             for server in serverList['servers']:
                 if( server['country'] == 'China' and server['num_players'] > 0 and server['players'] != []):
+                    plNameStr = '`|'
+                    plNum = 0
+                
+                    for player in server['players']:
+                        plNameStr += f" {player['name']} |"
+                        plNum += 1
+
+                    if (plNum <= 0):
+                        continue
+                    
+                    plNameStr += '`'
+
                     embed = Embed(
                     colour = discord.Color.red(),
                     timestamp = datetime.now()
@@ -109,17 +124,8 @@ class Cmd(Cog):
                     embed.add_field(name=f"{server['name']}", value=f"`Server IP:` `{server['server_ip']}:{server['server_port']}`", inline=False)
                     embed.add_field(name="游戏版本", value=f"`{server['version']}`")
                     embed.add_field(name=f"当前地图", value=f"`{server['map']}`")
-                    
-                    plNameStr = '`|'
-                    plNum = 0
-                
-                    for player in server['players']:
-                        plNameStr += f" {player['name']} |"
-                        plNum += 1
-
-                    plNameStr += '`'
-
                     embed.add_field(name=f'玩家列表( {plNum} 位 )', value=f"{plNameStr}", inline=False)
+                    
                     await ctx.send(embed=embed)
         else:
             embed = Embed(
@@ -140,6 +146,18 @@ class Cmd(Cog):
         if(serverList['servers'] != []):
             for server in serverList['servers']:
                 if( server['country'] == 'China' and server['num_players'] > 0 and server['players'] != {}):
+                    plNameStr = '`|'
+                    plNum = 0
+                
+                    for player in server['players']:
+                        plNameStr += f" {player['name']} |"
+                        plNum += 1
+
+                    if (plNum <= 0):
+                        continue
+                    
+                    plNameStr += '`'
+
                     embed = Embed(
                     colour = discord.Color.red(),
                     timestamp = datetime.now()
@@ -148,17 +166,8 @@ class Cmd(Cog):
                     embed.add_field(name=f"{server['name']}", value=f"`Server IP:` `{server['server_ip']}:{server['server_port']}`", inline=False)
                     embed.add_field(name="游戏版本", value=f"`{server['version']}`")
                     embed.add_field(name=f"当前地图", value=f"`{server['map']}`")
-
-                    plNameStr = '`|'
-                    plNum = 0
-                
-                    for player in server['players']:
-                        plNameStr += f" {player['name']} |"
-                        plNum += 1
-
-                    plNameStr += '`'
-
                     embed.add_field(name=f'玩家列表( {plNum} 位 )', value=f"{plNameStr}", inline=False)
+                    
                     await ctx.send(embed=embed)
         else:
             embed = Embed(
