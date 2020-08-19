@@ -45,6 +45,23 @@ class Help(Cog):
     #         else:
     #             await ctx.send('未找到此命令.')
 
+    @command(name='twshelp')
+    async def _twshelp(self, ctx):
+        embed = Embed(
+            title = '命令面板',
+            description = 'RedTea 将提供以下所有帮助.',
+            colour = discord.Color.red(),
+            timestamp = datetime.now()
+        )
+        embed.set_author(name='Teeworlds中国社区', url='https://discord.gg/dqwuHEq', icon_url=self.bot.guild.icon_url)
+        embed.set_thumbnail(url=self.bot.guild.icon_url)
+        embed.set_footer(text='欢迎使用命令面板.')
+        embed.add_field(name='$twshelp', value='查询帮助.')
+        embed.add_field(name='$getserverlist', value='查询所有在中国的服务器并且内有玩家.')
+        # embed.add_field(name='$echo', value='无情复读机.')
+        embed.add_field(name='$roll', value='掷骰子($roll 1d6)', inline=False)
+        embed.add_field(name='$create_time', value='RedTea 的创建时间.', inline=False)
+        await ctx.send(embed=embed)
 
     @command(name='help', aliases=['command', 'cmd'], hidden=False)
     async def _help(self, ctx):

@@ -24,12 +24,12 @@ class Cmd(Cog):
 
         for server in serverList['servers']:
             if( server['num_players'] > 0 and server['players'] != {} and server['country'] == 'China'):
-                info = f"{server['name']}\n{server['map']}\n{server['server_ip']}\nPlayers:\n`| "
+                info = f"```{server['name']}\n{server['map']}\n{server['server_ip']}\nPlayers:\n| "
 
                 for player in server['players']:
                     info += player['name'] + ' | '
 
-                info += "`"
+                info += "```"
                 await ctx.send(info)
 
     @command(name='roll', aliases=['dice', 'r'])
