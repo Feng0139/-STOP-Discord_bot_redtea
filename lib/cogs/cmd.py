@@ -64,16 +64,18 @@ class Cmd(Cog):
                 embed.set_footer(text='请求来自 ' + f'{ctx.author.display_name} ( {ctx.author} ) ', icon_url=f'{ctx.author.avatar_url}')
                 embed.add_field(name=f"{server['name']}", value=f"`{server['server_ip']}`")
                 
-                plNameStr = '`'
+                plNameStr = '`|'
                 plNum = 0
             
                 for player in server['players']:
-                    if(player == server['plsyers'][-1]):
-                        plNameStr += f"{player['name']}`"
-                    else:
-                        plNameStr += f" {player['name']} |"
+                    # if(player == server['plsyers'][-1]):
+                    #     plNameStr += f"{player['name']}`"
+                    # else:
+                    plNameStr += f" {player['name']} |"
                     
                     plNum += 1
+                    
+                plNameStr += '`'
 
                 embed.add_field(name=f'玩家列表({plNum})', value=f"{plNameStr}")
 
