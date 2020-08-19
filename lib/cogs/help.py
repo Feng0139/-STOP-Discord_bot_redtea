@@ -94,7 +94,7 @@ class Help(Cog):
         embed.set_footer(text='欢迎使用命令面板.')
         embed.add_field(name='命令前缀', value='`$`')
         embed.add_field(name='Cyyou! 官方聊天室帮助', value='`cyhelp` | `chelp`', inline=False)
-        embed.add_field(name='Teewordls 社区帮助', value='`twshelp` | `thelp`', inline=False)
+        embed.add_field(name='Teewordls 中国社区帮助', value='`twshelp` | `thelp`', inline=False)
         await ctx.send(embed=embed)
 
     
