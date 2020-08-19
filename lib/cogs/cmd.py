@@ -23,7 +23,7 @@ class Cmd(Cog):
         serverList = json.loads(serverListHTML.decode('utf-8'))
 
         for server in serverList['servers']:
-            if( server['country'] == 'China' and server['num_players'] > 0 and server['players'] != [] and server['gamemode'] == 'InfClassR'):
+            if( server['country'] == 'China' and server['num_players'] > 0 and server['players'] != {} and server['gamemode'] == 'InfClassR'):
                 info = f"```{server['name']}\n{server['map']}\n{server['server_ip']}\nPlayers:\n| "
 
                 for player in server['players']:
