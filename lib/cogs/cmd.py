@@ -70,7 +70,7 @@ class Cmd(Cog):
 
                     if (plNum <= 0):
                         server -= 1
-                        continue
+                        break
                     
                     plNameStr += '`'
 
@@ -115,7 +115,7 @@ class Cmd(Cog):
 
                     if (plNum <= 0):
                         server -= 1
-                        continue
+                        break
                     
                     plNameStr += '`'
 
