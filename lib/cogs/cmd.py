@@ -12,7 +12,9 @@ import json
 
 headers = {'User-Agent':'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:23.0) Gecko/20100101 Firefox/23.0'}
 serverAPIHTML = 'https://api.status.tw/2.0/server/list/'
-
+#   https://api.status.tw/2.0/server/list/?ip=14.29.99.49   TOM PVP
+#   https://api.status.tw/2.0/server/list/?ip=106.14.194.1  David PVP
+#   https://api.status.tw/2.0/server/list/?ip=139.9.34.133  DDNet
 class Cmd(Cog):
     def __init__(self, bot):
         self.bot = bot
@@ -92,7 +94,7 @@ class Cmd(Cog):
             timestamp = datetime.now()
             )
             embed.set_footer(text='请求来自 ' + f'{ctx.author.display_name} ( {ctx.author} ) ', icon_url=f'{ctx.author.avatar_url}')
-            embed.add_field(name=f"未查询到有玩家存在的服务器")
+            embed.add_field(name=f"未查询到有玩家存在的服务器", value='')
             await ctx.send(embed=embed)
 
     @command(name='GetDDRServer', aliases=['getddrserver', 'gds'])
@@ -137,7 +139,7 @@ class Cmd(Cog):
             timestamp = datetime.now()
             )
             embed.set_footer(text='请求来自 ' + f'{ctx.author.display_name} ( {ctx.author} ) ', icon_url=f'{ctx.author.avatar_url}')
-            embed.add_field(name=f"未查询到有玩家存在的服务器")
+            embed.add_field(name=f"未查询到有玩家存在的服务器", value='')
             await ctx.send(embed=embed)
         
     @command(name='GetServerList', aliases=['getserverlist', 'gsl'])
@@ -182,7 +184,7 @@ class Cmd(Cog):
             timestamp = datetime.now()
             )
             embed.set_footer(text='请求来自 ' + f'{ctx.author.display_name} ( {ctx.author} ) ', icon_url=f'{ctx.author.avatar_url}')
-            embed.add_field(name=f"未查询到有玩家存在的服务器")
+            embed.add_field(name=f"未查询到有玩家存在的服务器", value='')
             await ctx.send(embed=embed)
 
 
