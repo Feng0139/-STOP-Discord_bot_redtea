@@ -14,11 +14,10 @@ class Cmd(Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    headers = {'User-Agent':'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:23.0) Gecko/20100101 Firefox/23.0'}
-    serverAPIHTML = 'https://api.status.tw/2.0/server/list/'
-
     @command(name='GetINFServer', aliases=['getinfserver', 'gis'])
     async def _GetServerList(self, ctx):
+        headers = {'User-Agent':'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:23.0) Gecko/20100101 Firefox/23.0'}
+        serverAPIHTML = 'https://api.status.tw/2.0/server/list/'
         req = urllib.request.Request(url=serverAPIHTML, headers=headers)
         serverListHTML = urlopen(req).read()
         serverList = json.loads(serverListHTML.decode('utf-8'))
@@ -35,6 +34,8 @@ class Cmd(Cog):
 
     @command(name='GetDDRServer', aliases=['getddrserver', 'gds'])
     async def _GetServerList(self, ctx):
+        headers = {'User-Agent':'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:23.0) Gecko/20100101 Firefox/23.0'}
+        serverAPIHTML = 'https://api.status.tw/2.0/server/list/'
         req = urllib.request.Request(url=serverAPIHTML, headers=headers)
         serverListHTML = urlopen(req).read()
         serverList = json.loads(serverListHTML.decode('utf-8'))
@@ -51,6 +52,8 @@ class Cmd(Cog):
 
     @command(name='GetServerList', aliases=['getserverlist', 'gsl'])
     async def _GetServerList(self, ctx):
+        headers = {'User-Agent':'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:23.0) Gecko/20100101 Firefox/23.0'}
+        serverAPIHTML = 'https://api.status.tw/2.0/server/list/'
         req = urllib.request.Request(url=serverAPIHTML, headers=headers)
         serverListHTML = urlopen(req).read()
         serverList = json.loads(serverListHTML.decode('utf-8'))
