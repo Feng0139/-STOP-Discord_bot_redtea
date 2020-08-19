@@ -24,14 +24,8 @@ class Cmd(Cog):
         serverList = json.loads(serverListHTML.decode('utf-8'))
 
         for server in serverList['servers']:
-            if( server['country'] == 'China' and server['num_players'] > 0):
-                info = f"```{server['name']}\n{server['map']}\n{server['server_ip']}\nPlayers:\n| "
-
-                for player in server['players']:
-                    info += player['name'] + ' | '
-
-                info += "```"
-                await ctx.send(info)
+            if( server['country'] == 'China' and server['num_players'] > 0 and server['players'] != {}):
+                await ctx.send(embed=_GetEmbedServer(server))
 
     @command(name='GetDDRServer', aliases=['getddrserver', 'gds'])
     async def _GetServerList(self, ctx):
@@ -40,14 +34,8 @@ class Cmd(Cog):
         serverList = json.loads(serverListHTML.decode('utf-8'))
 
         for server in serverList['servers']:
-            if( server['country'] == 'China' and server['num_players'] > 0):
-                info = f"```{server['name']}\n{server['map']}\n{server['server_ip']}\nPlayers:\n| "
-
-                for player in server['players']:
-                    info += player['name'] + ' | '
-
-                info += "```"
-                await ctx.send(info)
+            if( server['country'] == 'China' and server['num_players'] > 0 and server['players'] != {}):
+                await ctx.send(embed=_GetEmbedServer(server))
 
     @command(name='GetServerList', aliases=['getserverlist', 'gsl'])
     async def _GetServerList(self, ctx):
@@ -57,29 +45,29 @@ class Cmd(Cog):
 
         for server in serverList['servers']:
             if( server['country'] == 'China' and server['num_players'] > 0 and server['players'] != {}):
-                embed = Embed(
-                    colour = discord.Color.red(),
-                    timestamp = datetime.now()
-                )
-                embed.set_footer(text='请求来自 ' + f'{ctx.author.display_name} ( {ctx.author} ) ', icon_url=f'{ctx.author.avatar_url}')
-                embed.add_field(name=f"{server['name']}", value=f"`Server IP: ` `{server['server_ip']}:{server['server_port']}`", inline=False)
-                
-                plNameStr = '`|'
-                plNum = 0
+                await ctx.send(embed=_GetEmbedServer(server))
+
+    def _GetEmbedServer(self, server):
+            embed = Embed(
+                colour = discord.Color.red(),
+                timestamp = datetime.now()
+            )
+            embed.set_footer(text='请求来自 ' + f'{ctx.author.display_name} ( {ctx.author} ) ', icon_url=f'{ctx.author.avatar_url}')
+            embed.add_field(name=f"{server['name']}", value=f"`Server IP:` `{server['server_ip']}:{server['server_port']}`", inline=False)
             
-                for player in server['players']:
-                    # if(player == server['plsyers'][-1]):
-                    #     plNameStr += f"{player['name']}`"
-                    # else:
-                    plNameStr += f" {player['name']} |"
-                    
-                    plNum += 1
+            plNameStr = '`|'
+            plNum = 0
+        
+            for player in server['players']:
+                plNameStr += f" {player['name']} |"
+                plNum += 1
 
-                plNameStr += '`'
+            plNameStr += '`'
 
-                embed.add_field(name=f'玩家列表( {plNum} 位 )', value=f"{plNameStr}", inline=False)
+            embed.add_field(name=f'玩家列表( {plNum} 位 )', value=f"{plNameStr}", inline=False)
 
-                await ctx.send(embed=embed)
+            return embed
+
 
     @command(name='roll', aliases=['dice', 'r'])
     async def _roll(self, ctx, die_string: str):
