@@ -34,7 +34,7 @@ class Cmd(Cog):
             embed.set_footer(text='请求来自 ' + f'{ctx.author.display_name} ( {ctx.author} ) ', icon_url=f'{ctx.author.avatar_url}')
         
             for server in serverList['servers']:
-                if( server['country'] == 'China' and server['num_players'] > 0 and server['players'] != {}):
+                if( server['country'] == 'China' and server['num_players'] > 0 and server['players'] != []):
                     plServer += 1
                     for player in server['players']:
                         plNameStr += f" {player['name']} |"
@@ -61,7 +61,7 @@ class Cmd(Cog):
 
         if(serverList['servers'] != []):
             for server in serverList['servers']:
-                if( server['country'] == 'China' and server['num_players'] > 0 and server['players'] != {}):
+                if( server['country'] == 'China' and server['num_players'] > 0 and server['players'] != []):
                     embed = Embed(
                     colour = discord.Color.red(),
                     timestamp = datetime.now()
@@ -100,7 +100,7 @@ class Cmd(Cog):
 
         if(serverList['servers'] != []):
             for server in serverList['servers']:
-                if( server['country'] == 'China' and server['num_players'] > 0 and server['players'] != {}):
+                if( server['country'] == 'China' and server['num_players'] > 0 and server['players'] != []):
                     embed = Embed(
                     colour = discord.Color.red(),
                     timestamp = datetime.now()
