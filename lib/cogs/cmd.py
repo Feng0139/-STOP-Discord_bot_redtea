@@ -73,7 +73,7 @@ class Cmd(Cog):
 
                 embed.add_field(name=f'玩家列表({plNum})', value=f"{plNameStr}")
 
-                await ctx.send(info)
+                await ctx.send(embed=embed)
 
     @command(name='roll', aliases=['dice', 'r'])
     async def _roll(self, ctx, die_string: str):
