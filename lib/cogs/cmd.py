@@ -61,15 +61,17 @@ class Cmd(Cog):
                     colour = discord.Color.red(),
                     timestamp = datetime.now()
                 )
-                embed.set_footer(text='请求来自 ' + f'{ctx.author.display_name} ( {ctx.author} ) .', icon_url=f'{ctx.author.avatar_url}')
+                embed.set_footer(text='请求来自 ' + f'{ctx.author.display_name} ( {ctx.author} ) ', icon_url=f'{ctx.author.avatar_url}')
                 embed.add_field(name=f"{server['name']}", value=f"`{server['server_ip']}`")
                 
                 plNameStr = ''
+                plNum = 0
             
                 for player in server['players']:
-                    plNameStr += '`' + player['name'] + '` '
+                    plNameStr += f"`{player['name']}`"
+                    plNum += 1
 
-                embed.add_field(name='玩家列表', value=f"{plNameStr}")
+                embed.add_field(name=f'玩家列表({plNum})', value=f"{plNameStr}")
 
                 await ctx.send(info)
 
@@ -81,7 +83,7 @@ class Cmd(Cog):
             colour = discord.Color.red(),
             timestamp = datetime.now()
         )
-        embed.set_footer(text='请求来自 ' + f'{ctx.author.display_name} ( {ctx.author} ) .', icon_url=f'{ctx.author.avatar_url}')
+        embed.set_footer(text='请求来自 ' + f'{ctx.author.display_name} ( {ctx.author} ) ', icon_url=f'{ctx.author.avatar_url}')
         #embed.set_author(name=f'{ctx.author.display_name} ( {ctx.author} )', icon_url=f'{ctx.author.avatar_url}')
         
         if dice < 40 and value <= 100 and dice > 0 and value > 0:
