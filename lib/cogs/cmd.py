@@ -7,6 +7,7 @@ from discord import Embed
 import discord
 
 from urllib.request import urlopen;
+import urllib
 import json
 
 class Cmd(Cog):
