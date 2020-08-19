@@ -23,7 +23,7 @@ class Cmd(Cog):
         serverList = json.loads(serverListHTML.decode('utf-8'))
 
         for server in serverList['servers']:
-            if( server['num_players'] > 0 and server['players'] != {} and server['country'] == 'China' and server['gamemode'] == 'InfClassR'):
+            if( server['country'] == 'China' and server['num_players'] > 0 and server['players'] != [] and server['gamemode'] == 'InfClassR'):
                 info = f"```{server['name']}\n{server['map']}\n{server['server_ip']}\nPlayers:\n| "
 
                 for player in server['players']:
@@ -41,7 +41,7 @@ class Cmd(Cog):
         serverList = json.loads(serverListHTML.decode('utf-8'))
 
         for server in serverList['servers']:
-            if( server['num_players'] > 0 and server['players'] != {} and server['country'] == 'China' and server['gamemode'] == 'DDraceNetwork'):
+            if( server['country'] == 'China' and server['num_players'] > 0 and server['players'] != {} and server['gamemode'] == 'DDraceNetwork'):
                 info = f"```{server['name']}\n{server['map']}\n{server['server_ip']}\nPlayers:\n| "
 
                 for player in server['players']:
@@ -59,7 +59,7 @@ class Cmd(Cog):
         serverList = json.loads(serverListHTML.decode('utf-8'))
 
         for server in serverList['servers']:
-            if( server['num_players'] > 0 and server['players'] != {} and server['country'] == 'China'):
+            if( server['country'] == 'China' and server['num_players'] > 0 and server['players'] != {}):
                 info = f"```{server['name']}\n{server['map']}\n{server['server_ip']}\nPlayers:\n| "
 
                 for player in server['players']:
