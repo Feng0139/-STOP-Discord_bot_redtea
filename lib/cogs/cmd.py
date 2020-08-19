@@ -25,7 +25,7 @@ class Cmd(Cog):
 
         for server in serverList['servers']:
             if( server['country'] == 'China' and server['num_players'] > 0 and server['players'] != {}):
-                await ctx.send(embed=_GetEmbedServer(server))
+                await ctx.send(embed=_GetEmbedServer(ctx, server))
 
     @command(name='GetDDRServer', aliases=['getddrserver', 'gds'])
     async def _GetServerList(self, ctx):
@@ -35,7 +35,7 @@ class Cmd(Cog):
 
         for server in serverList['servers']:
             if( server['country'] == 'China' and server['num_players'] > 0 and server['players'] != {}):
-                await ctx.send(embed=_GetEmbedServer(server))
+                await ctx.send(embed=_GetEmbedServer(ctx, server))
 
     @command(name='GetServerList', aliases=['getserverlist', 'gsl'])
     async def _GetServerList(self, ctx):
@@ -45,9 +45,9 @@ class Cmd(Cog):
 
         for server in serverList['servers']:
             if( server['country'] == 'China' and server['num_players'] > 0 and server['players'] != {}):
-                await ctx.send(embed=_GetEmbedServer(server))
+                await ctx.send(embed=_GetEmbedServer(ctx, server))
 
-    def _GetEmbedServer(self, server):
+    def _GetEmbedServer(self, ctx, server):
             embed = Embed(
                 colour = discord.Color.red(),
                 timestamp = datetime.now()
