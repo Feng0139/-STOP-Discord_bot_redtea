@@ -69,6 +69,7 @@ class Cmd(Cog):
                         plNum += 1
 
                     if (plNum <= 0):
+                        server -= 1
                         continue
                     
                     plNameStr += '`'
@@ -83,15 +84,15 @@ class Cmd(Cog):
                     embed.add_field(name="游戏模式", value=f"`{server['gamemode']}`")
                     embed.add_field(name=f"当前地图", value=f"`{server['map']}`")
                     embed.add_field(name=f'玩家列表( {plNum} 位 )', value=f"{plNameStr}", inline=False)
-                    
                     await ctx.send(embed=embed)
-        if (servers == 0):
+
+        if (servers <= 0):
             embed = Embed(
             colour = discord.Color.red(),
             timestamp = datetime.now()
             )
             embed.set_footer(text='请求来自 ' + f'{ctx.author.display_name} ( {ctx.author} ) ', icon_url=f'{ctx.author.avatar_url}')
-            embed.add_field(name=f"未查询到服务器")
+            embed.add_field(name=f"未查询到有玩家存在的服务器")
             await ctx.send(embed=embed)
 
     @command(name='GetDDRServer', aliases=['getddrserver', 'gds'])
@@ -113,6 +114,7 @@ class Cmd(Cog):
                         plNum += 1
 
                     if (plNum <= 0):
+                        server -= 1
                         continue
                     
                     plNameStr += '`'
@@ -127,15 +129,15 @@ class Cmd(Cog):
                     embed.add_field(name="游戏模式", value=f"`{server['gamemode']}`")
                     embed.add_field(name=f"当前地图", value=f"`{server['map']}`")
                     embed.add_field(name=f'玩家列表( {plNum} 位 )', value=f"{plNameStr}", inline=False)
-                    
                     await ctx.send(embed=embed)
+
         if (servers == 0):
             embed = Embed(
             colour = discord.Color.red(),
             timestamp = datetime.now()
             )
             embed.set_footer(text='请求来自 ' + f'{ctx.author.display_name} ( {ctx.author} ) ', icon_url=f'{ctx.author.avatar_url}')
-            embed.add_field(name=f"未查询到服务器")
+            embed.add_field(name=f"未查询到有玩家存在的服务器")
             await ctx.send(embed=embed)
         
     @command(name='GetServerList', aliases=['getserverlist', 'gsl'])
@@ -157,6 +159,7 @@ class Cmd(Cog):
                         plNum += 1
 
                     if (plNum <= 0):
+                        server -= 1
                         continue
                     
                     plNameStr += '`'
@@ -179,7 +182,7 @@ class Cmd(Cog):
             timestamp = datetime.now()
             )
             embed.set_footer(text='请求来自 ' + f'{ctx.author.display_name} ( {ctx.author} ) ', icon_url=f'{ctx.author.avatar_url}')
-            embed.add_field(name=f"未查询到服务器")
+            embed.add_field(name=f"未查询到有玩家存在的服务器")
             await ctx.send(embed=embed)
 
 
