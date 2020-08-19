@@ -19,14 +19,12 @@ class Cmd(Cog):
 
     @command(name='GetINFServer', aliases=['getinfserver', 'gis'])
     async def _GetServerList(self, ctx):
-        headers = {'User-Agent':'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:23.0) Gecko/20100101 Firefox/23.0'}
-        serverAPIHTML = 'https://api.status.tw/2.0/server/list/'
         req = urllib.request.Request(url=serverAPIHTML, headers=headers)
         serverListHTML = urlopen(req).read()
         serverList = json.loads(serverListHTML.decode('utf-8'))
 
         for server in serverList['servers']:
-            if( server['country'] == 'China' and server['num_players'] > 0 and server['players'] != {} and server['gamemode'] == 'InfClassR'):
+            if( server['country'] == 'China' and server['num_players'] > 0 and server['gamemode'] == 'InfClassR'):
                 info = f"```{server['name']}\n{server['map']}\n{server['server_ip']}\nPlayers:\n| "
 
                 for player in server['players']:
@@ -37,14 +35,12 @@ class Cmd(Cog):
 
     @command(name='GetDDRServer', aliases=['getddrserver', 'gds'])
     async def _GetServerList(self, ctx):
-        headers = {'User-Agent':'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:23.0) Gecko/20100101 Firefox/23.0'}
-        serverAPIHTML = 'https://api.status.tw/2.0/server/list/'
         req = urllib.request.Request(url=serverAPIHTML, headers=headers)
         serverListHTML = urlopen(req).read()
         serverList = json.loads(serverListHTML.decode('utf-8'))
 
         for server in serverList['servers']:
-            if( server['country'] == 'China' and server['num_players'] > 0 and server['players'] != {} and server['gamemode'] == 'DDraceNetwork'):
+            if( server['country'] == 'China' and server['num_players'] > 0 and server['gamemode'] == 'DDraceNetwork'):
                 info = f"```{server['name']}\n{server['map']}\n{server['server_ip']}\nPlayers:\n| "
 
                 for player in server['players']:
@@ -60,7 +56,7 @@ class Cmd(Cog):
         serverList = json.loads(serverListHTML.decode('utf-8'))
 
         for server in serverList['servers']:
-            if( server['country'] == 'China' and server['num_players'] > 0 and server['players'] != {}):
+            if( server['country'] == 'China' and server['num_players'] > 0):
                 info = f"```{server['name']}\n{server['map']}\n{server['server_ip']}\nPlayers:\n| "
 
                 for player in server['players']:
