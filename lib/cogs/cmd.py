@@ -18,7 +18,7 @@ class Cmd(Cog):
         self.bot = bot
 
     @command(name='GetINFServer', aliases=['getinfserver', 'gis'])
-    async def _GetServerList(self, ctx):
+    async def _GetINFServer(self, ctx):
         req = urllib.request.Request(url=serverAPIHTML + '?gamemode=InfClassR', headers=headers)
         serverListHTML = urlopen(req).read()
         serverList = json.loads(serverListHTML.decode('utf-8'))
@@ -45,7 +45,7 @@ class Cmd(Cog):
                 await ctx.send(embed=embed)
 
     @command(name='GetDDRServer', aliases=['getddrserver', 'gds'])
-    async def _GetServerList(self, ctx):
+    async def _GetDDRServer(self, ctx):
         req = urllib.request.Request(url=serverAPIHTML + '?gamemode=DDraceNetwork', headers=headers)
         serverListHTML = urlopen(req).read()
         serverList = json.loads(serverListHTML.decode('utf-8'))
