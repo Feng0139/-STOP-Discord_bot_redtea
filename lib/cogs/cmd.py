@@ -81,6 +81,7 @@ class Cmd(Cog):
                     embed.set_footer(text='请求来自 ' + f'{ctx.author.display_name} ( {ctx.author} ) ', icon_url=f'{ctx.author.avatar_url}')
                     embed.add_field(name=f"{server['name']}", value=f"`Server IP:` `{server['server_ip']}:{server['server_port']}`", inline=False)
                     embed.add_field(name="游戏版本", value=f"`{server['version']}`")
+                    embed.add_field(name="游戏模式", value=f"`{server['gamemode']}`")
                     embed.add_field(name=f"当前地图", value=f"`{server['map']}`")
                     embed.add_field(name=f'玩家列表( {plNum} 位 )', value=f"{plNameStr}", inline=False)
 
@@ -93,7 +94,6 @@ class Cmd(Cog):
             embed.set_footer(text='请求来自 ' + f'{ctx.author.display_name} ( {ctx.author} ) ', icon_url=f'{ctx.author.avatar_url}')
             embed.add_field(name=f"未查询到服务器")
             await ctx.send(embed=embed)
-
 
     @command(name='GetDDRServer', aliases=['getddrserver', 'gds'])
     async def _GetDDRServer(self, ctx):
@@ -136,7 +136,6 @@ class Cmd(Cog):
             embed.add_field(name=f"未查询到服务器")
             await ctx.send(embed=embed)
         
-
     @command(name='GetServerList', aliases=['getserverlist', 'gsl'])
     async def _GetServerList(self, ctx):
         req = urllib.request.Request(url=serverAPIHTML, headers=headers)
@@ -177,6 +176,7 @@ class Cmd(Cog):
             embed.set_footer(text='请求来自 ' + f'{ctx.author.display_name} ( {ctx.author} ) ', icon_url=f'{ctx.author.avatar_url}')
             embed.add_field(name=f"未查询到服务器")
             await ctx.send(embed=embed)
+
 
     @command(name='roll', aliases=['dice', 'r'])
     async def _roll(self, ctx, die_string: str):
