@@ -74,10 +74,10 @@ class Cmd(Cog):
                     plNameStr += f" {player['name']} |"
                     
                     plNum += 1
-                    
+
                 plNameStr += '`'
 
-                embed.add_field(name=f'玩家列表({plNum})', value=f"{plNameStr}")
+                embed.add_field(name=f'玩家列表({plNum})', value=f"{plNameStr}", inline=False)
 
                 await ctx.send(embed=embed)
 
