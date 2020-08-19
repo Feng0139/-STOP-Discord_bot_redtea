@@ -19,12 +19,12 @@ class Cmd(Cog):
 
     @command(name='GetINFServer', aliases=['getinfserver', 'gis'])
     async def _GetServerList(self, ctx):
-        req = urllib.request.Request(url=serverAPIHTML, headers=headers)
+        req = urllib.request.Request(url=serverAPIHTML + '?gamemode=InfClassR', headers=headers)
         serverListHTML = urlopen(req).read()
         serverList = json.loads(serverListHTML.decode('utf-8'))
 
         for server in serverList['servers']:
-            if( server['country'] == 'China' and server['num_players'] > 0 and server['gamemode'] == 'InfClassR'):
+            if( server['country'] == 'China' and server['num_players'] > 0 and server['players'] != []):
                 info = f"```{server['name']}\n{server['map']}\n{server['server_ip']}\nPlayers:\n| "
 
                 for player in server['players']:
@@ -35,12 +35,12 @@ class Cmd(Cog):
 
     @command(name='GetDDRServer', aliases=['getddrserver', 'gds'])
     async def _GetServerList(self, ctx):
-        req = urllib.request.Request(url=serverAPIHTML, headers=headers)
+        req = urllib.request.Request(url=serverAPIHTML + '?gamemode=DDraceNetwork', headers=headers)
         serverListHTML = urlopen(req).read()
         serverList = json.loads(serverListHTML.decode('utf-8'))
 
         for server in serverList['servers']:
-            if( server['country'] == 'China' and server['num_players'] > 0 and server['gamemode'] == 'DDraceNetwork'):
+            if( server['country'] == 'China' and server['num_players'] > 0 and server['players'] != []):
                 info = f"```{server['name']}\n{server['map']}\n{server['server_ip']}\nPlayers:\n| "
 
                 for player in server['players']:
@@ -56,13 +56,21 @@ class Cmd(Cog):
         serverList = json.loads(serverListHTML.decode('utf-8'))
 
         for server in serverList['servers']:
-            if( server['country'] == 'China' and server['num_players'] > 0):
-                info = f"```{server['name']}\n{server['map']}\n{server['server_ip']}\nPlayers:\n| "
-
+            if( server['country'] == 'China' and server['num_players'] > 0 and server['players'] != []):
+                embed = Embed(
+                    colour = discord.Color.red(),
+                    timestamp = datetime.now()
+                )
+                embed.set_footer(text='请求来自 ' + f'{ctx.author.display_name} ( {ctx.author} ) .', icon_url=f'{ctx.author.avatar_url}')
+                embed.add_field(name=f"{server['name']}", value=f"`{server['server_ip']}`")
+                
+                plNameStr = ''
+            
                 for player in server['players']:
-                    info += player['name'] + ' | '
+                    plNameStr += '`' + player['name'] + '` '
 
-                info += "```"
+                embed.add_field(name='玩家列表', value=f"{plNameStr}")
+
                 await ctx.send(info)
 
     @command(name='roll', aliases=['dice', 'r'])
@@ -73,14 +81,14 @@ class Cmd(Cog):
             colour = discord.Color.red(),
             timestamp = datetime.now()
         )
-        embed.set_author(name=f'{ctx.author.display_name} ( {ctx.author} )', icon_url=f'{ctx.author.avatar_url}')
+        embed.set_footer(text='请求来自 ' + f'{ctx.author.display_name} ( {ctx.author} ) .', icon_url=f'{ctx.author.avatar_url}')
+        #embed.set_author(name=f'{ctx.author.display_name} ( {ctx.author} )', icon_url=f'{ctx.author.avatar_url}')
         
-
         if dice < 40 and value <= 100 and dice > 0 and value > 0:
             rolls = [randint(1, value) for i in range(dice)]
             embed.add_field(name=f'{die_string} = {sum(rolls)}',value='( ' + ' + '.join([str(r) for r in rolls]) + ' )')
         else:
-            embed.add_field(name='Error',value='骰子数量不超过 40, 骰子值不超过 100.\n同时两者不少于 0.')
+            embed.add_field(name='Error',value='骰子数量不超过 40, 骰子值不超过 100.\n同时两者都不小于 0.')
             embed.set_footer(text='Tips: $roll 1d6')
         
         await ctx.send(embed=embed)
