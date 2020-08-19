@@ -23,15 +23,11 @@ class Cmd(Cog):
         serverListHTML = urlopen(req).read()
         serverList = json.loads(serverListHTML.decode('utf-8'))
 
+        plNum = 0
+        plServer = 0
+
         if(serverList['servers'] != []):
             plNameStr = '`|'
-            plNum = 0
-            plServer = 0
-            embed = Embed(
-                colour = discord.Color.red(),
-                timestamp = datetime.now()
-                )
-            embed.set_footer(text='请求来自 ' + f'{ctx.author.display_name} ( {ctx.author} ) ', icon_url=f'{ctx.author.avatar_url}')
         
             for server in serverList['servers']:
                 if( server['country'] == 'China' and server['num_players'] > 0 and server['players'] != []):
@@ -40,17 +36,18 @@ class Cmd(Cog):
                         plNameStr += f" {player['name']} |"
                         plNum += 1
 
+            embed = Embed(
+                colour = discord.Color.red(),
+                timestamp = datetime.now()
+                )
+            embed.set_footer(text='请求来自 ' + f'{ctx.author.display_name} ( {ctx.author} ) ', icon_url=f'{ctx.author.avatar_url}')
+
             plNameStr += '`'
 
+            if(plNum == 0):
+                plNameStr = ''
+
             embed.add_field(name=f'已查询到有 {plNum} 位玩家在 {plServer} 个 CHN 服务器中...', value=f"{plNameStr}", inline=False)
-            await ctx.send(embed=embed)
-        else:
-            embed = Embed(
-            colour = discord.Color.red(),
-            timestamp = datetime.now()
-            )
-            embed.set_footer(text='请求来自 ' + f'{ctx.author.display_name} ( {ctx.author} ) ', icon_url=f'{ctx.author.avatar_url}')
-            embed.add_field(name=f"未查询到服务器")
             await ctx.send(embed=embed)
 
     @command(name='GetINFServer', aliases=['getinfserver', 'gis'])
@@ -59,9 +56,11 @@ class Cmd(Cog):
         serverListHTML = urlopen(req).read()
         serverList = json.loads(serverListHTML.decode('utf-8'))
 
+        servers = 0
         if(serverList['servers'] != []):
             for server in serverList['servers']:
                 if( server['country'] == 'China' and server['num_players'] > 0 and server['players'] != []):
+                    servers += 1
                     plNameStr = '`|'
                     plNum = 0
                 
@@ -84,9 +83,9 @@ class Cmd(Cog):
                     embed.add_field(name="游戏模式", value=f"`{server['gamemode']}`")
                     embed.add_field(name=f"当前地图", value=f"`{server['map']}`")
                     embed.add_field(name=f'玩家列表( {plNum} 位 )', value=f"{plNameStr}", inline=False)
-
+                    
                     await ctx.send(embed=embed)
-        else:
+        if (servers == 0):
             embed = Embed(
             colour = discord.Color.red(),
             timestamp = datetime.now()
@@ -101,9 +100,11 @@ class Cmd(Cog):
         serverListHTML = urlopen(req).read()
         serverList = json.loads(serverListHTML.decode('utf-8'))
 
+        servers = 0
         if(serverList['servers'] != []):
             for server in serverList['servers']:
                 if( server['country'] == 'China' and server['num_players'] > 0 and server['players'] != []):
+                    servers += 1
                     plNameStr = '`|'
                     plNum = 0
                 
@@ -123,11 +124,12 @@ class Cmd(Cog):
                     embed.set_footer(text='请求来自 ' + f'{ctx.author.display_name} ( {ctx.author} ) ', icon_url=f'{ctx.author.avatar_url}')
                     embed.add_field(name=f"{server['name']}", value=f"`Server IP:` `{server['server_ip']}:{server['server_port']}`", inline=False)
                     embed.add_field(name="游戏版本", value=f"`{server['version']}`")
+                    embed.add_field(name="游戏模式", value=f"`{server['gamemode']}`")
                     embed.add_field(name=f"当前地图", value=f"`{server['map']}`")
                     embed.add_field(name=f'玩家列表( {plNum} 位 )', value=f"{plNameStr}", inline=False)
                     
                     await ctx.send(embed=embed)
-        else:
+        if (servers == 0):
             embed = Embed(
             colour = discord.Color.red(),
             timestamp = datetime.now()
@@ -142,9 +144,11 @@ class Cmd(Cog):
         serverListHTML = urlopen(req).read()
         serverList = json.loads(serverListHTML.decode('utf-8'))
 
+        servers = 0
         if(serverList['servers'] != []):
             for server in serverList['servers']:
-                if( server['country'] == 'China' and server['num_players'] > 0 and server['players'] != {}):
+                if( server['country'] == 'China' and server['num_players'] > 0 and server['players'] != []):
+                    servers += 1
                     plNameStr = '`|'
                     plNum = 0
                 
@@ -164,11 +168,12 @@ class Cmd(Cog):
                     embed.set_footer(text='请求来自 ' + f'{ctx.author.display_name} ( {ctx.author} ) ', icon_url=f'{ctx.author.avatar_url}')
                     embed.add_field(name=f"{server['name']}", value=f"`Server IP:` `{server['server_ip']}:{server['server_port']}`", inline=False)
                     embed.add_field(name="游戏版本", value=f"`{server['version']}`")
+                    embed.add_field(name="游戏模式", value=f"`{server['gamemode']}`")
                     embed.add_field(name=f"当前地图", value=f"`{server['map']}`")
                     embed.add_field(name=f'玩家列表( {plNum} 位 )', value=f"{plNameStr}", inline=False)
                     
                     await ctx.send(embed=embed)
-        else:
+        if (servers == 0):
             embed = Embed(
             colour = discord.Color.red(),
             timestamp = datetime.now()
