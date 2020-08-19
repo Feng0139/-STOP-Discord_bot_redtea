@@ -53,7 +53,7 @@ class Help(Cog):
             colour = discord.Color.red(),
             timestamp = datetime.now()
         )
-        embed.set_author(name='Teeworlds中国社区', url='https://discord.gg/dqwuHEq', icon_url=self.bot.guild.icon_url)
+        embed.set_author(name='Teeworlds中国社区', url='https://discord.gg/dqwuHEq', icon_url=476090055572717580)
         embed.set_thumbnail(url=self.bot.guild.icon_url)
         embed.set_footer(text='欢迎使用命令面板.')
         embed.add_field(name='命令前缀', value='`$`')
@@ -62,6 +62,25 @@ class Help(Cog):
         embed.add_field(name='查询 CHN 包含玩家的闯关服务器信息', value='`GetDDRServer` | `gds`', inline=False)
         embed.add_field(name='查询 CHN 包含玩家的感染服务器信息', value='`GetINFServer` | `gis`', inline=False)
         embed.add_field(name='查询 CHN 正在游玩的玩家数量及名称', value='`GetAllPlayer` | `gap`', inline=False)
+        await ctx.send(embed=embed)
+
+    @command(name='cyhelp', aliases=['chelp'], hidden=False)
+    async def _help(self, ctx):
+        # await ctx.message.delete()
+        embed = Embed(
+            title = '命令面板',
+            description = 'RedTea 将提供以下所有帮助.',
+            colour = discord.Color.red(),
+            timestamp = datetime.now()
+        )
+        embed.set_author(name='Cyyou! 官方聊天室', url='https://discord.gg/SgEAh66', icon_url=341447602115444746)
+        embed.set_thumbnail(url=self.bot.guild.icon_url)
+        embed.set_footer(text='欢迎使用命令面板.')
+        embed.add_field(name='命令前缀', value='`$`')
+        embed.add_field(name='查询帮助', value='`help`')
+        # embed.add_field(name='echo', value='无情复读机.')
+        embed.add_field(name='掷骰子($roll 1d6)', value='`roll`', inline=False)
+        embed.add_field(name='RedTea 的创建时间', value='`create_time`', inline=False)
         await ctx.send(embed=embed)
 
     @command(name='help', aliases=['command', 'cmd'], hidden=False)
@@ -73,15 +92,15 @@ class Help(Cog):
             colour = discord.Color.red(),
             timestamp = datetime.now()
         )
-        embed.set_author(name='Cyyou! 官方聊天室', url='https://discord.gg/SgEAh66', icon_url=self.bot.guild.icon_url)
+        embed.set_author(name=f'{ctx.guild.name}',  icon_url=ctx.guild.icon_url)
         embed.set_thumbnail(url=self.bot.guild.icon_url)
         embed.set_footer(text='欢迎使用命令面板.')
         embed.add_field(name='命令前缀', value='`$`')
-        embed.add_field(name='查询帮助', value='`help`')
-        # embed.add_field(name='echo', value='无情复读机.')
-        embed.add_field(name='掷骰子($roll 1d6)', value='`roll`', inline=False)
-        embed.add_field(name='RedTea 的创建时间', value='`create_time`', inline=False)
+        embed.add_field(name='Cyyou! 官方聊天室帮助', value='`cyhelp` | `chelp`', inline=False)
+        embed.add_field(name='Teewordls 社区帮助', value='`twshelp` | `thelp`', inline=False)
         await ctx.send(embed=embed)
+
+    
 
     @Cog.listener()
     async def on_ready(self):
