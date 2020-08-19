@@ -53,8 +53,7 @@ class Help(Cog):
             colour = discord.Color.red(),
             timestamp = datetime.now()
         )
-        embed.set_author(name='Teeworlds中国社区', url='https://discord.gg/dqwuHEq', icon_url=476090055572717580)
-        embed.set_thumbnail(url=476090055572717580)
+        embed.set_author(name='Teeworlds中国社区', url='https://discord.gg/dqwuHEq')
         embed.set_footer(text='欢迎使用命令面板.')
         embed.add_field(name='命令前缀', value='`$`')
         embed.add_field(name='查询帮助', value='`twshelp` | `thelp`')
@@ -66,15 +65,13 @@ class Help(Cog):
 
     @command(name='cyhelp', aliases=['chelp'], hidden=False)
     async def _cyhelp(self, ctx):
-        # await ctx.message.delete()
         embed = Embed(
             title = '命令面板',
             description = 'RedTea 将提供以下所有帮助.',
             colour = discord.Color.red(),
             timestamp = datetime.now()
         )
-        embed.set_author(name='Cyyou! 官方聊天室', url='https://discord.gg/SgEAh66', icon_url=341447602115444746)
-        embed.set_thumbnail(url=341447602115444746)
+        embed.set_author(name='Cyyou! 官方聊天室', url='https://discord.gg/SgEAh66')
         embed.set_footer(text='欢迎使用命令面板.')
         embed.add_field(name='命令前缀', value='`$`')
         embed.add_field(name='查询帮助', value='`help`')
