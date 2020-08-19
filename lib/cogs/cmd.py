@@ -44,7 +44,7 @@ class Cmd(Cog):
 
             plNameStr += '`'
 
-            if(plNum == 0):
+            if(plNum <= 0):
                 plNameStr = ''
 
             embed.add_field(name=f'已查询到有 {plNum} 位玩家在 {plServer} 个 CHN 服务器中...', value=f"{plNameStr}", inline=False)
@@ -131,7 +131,7 @@ class Cmd(Cog):
                     embed.add_field(name=f'玩家列表( {plNum} 位 )', value=f"{plNameStr}", inline=False)
                     await ctx.send(embed=embed)
 
-        if (servers == 0):
+        if (servers <= 0):
             embed = Embed(
             colour = discord.Color.red(),
             timestamp = datetime.now()
@@ -176,7 +176,7 @@ class Cmd(Cog):
                     embed.add_field(name=f'玩家列表( {plNum} 位 )', value=f"{plNameStr}", inline=False)
                     
                     await ctx.send(embed=embed)
-        if (servers == 0):
+        if (servers <= 0):
             embed = Embed(
             colour = discord.Color.red(),
             timestamp = datetime.now()
