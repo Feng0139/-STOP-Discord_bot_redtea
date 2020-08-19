@@ -23,7 +23,7 @@ class Cmd(Cog):
         serverListHTML = urlopen(req).read()
         serverList = json.loads(serverListHTML.decode('utf-8'))
 
-        try:
+        if(serverList['servers'] != []):
             for server in serverList['servers']:
                 if( server['country'] == 'China' and server['num_players'] > 0 and server['players'] != {}):
                     embed = Embed(
@@ -34,7 +34,7 @@ class Cmd(Cog):
                     embed.add_field(name=f"{server['name']}", value=f"`Server IP:` `{server['server_ip']}:{server['server_port']}`", inline=False)
                     embed.add_field(name="游戏版本", value=f"`{server['version']}`")
                     embed.add_field(name=f"当前地图", value=f"`{server['map']}`")
-                    
+
                     plNameStr = '`|'
                     plNum = 0
                 
@@ -46,6 +46,15 @@ class Cmd(Cog):
 
                     embed.add_field(name=f'玩家列表( {plNum} 位 )', value=f"{plNameStr}", inline=False)
                     await ctx.send(embed=embed)
+        else:
+            embed = Embed(
+            colour = discord.Color.red(),
+            timestamp = datetime.now()
+            )
+            embed.set_footer(text='请求来自 ' + f'{ctx.author.display_name} ( {ctx.author} ) ', icon_url=f'{ctx.author.avatar_url}')
+            embed.add_field(name=f"未查询到服务器")
+            await ctx.send(embed=embed)
+
 
     @command(name='GetDDRServer', aliases=['getddrserver', 'gds'])
     async def _GetDDRServer(self, ctx):
@@ -53,7 +62,7 @@ class Cmd(Cog):
         serverListHTML = urlopen(req).read()
         serverList = json.loads(serverListHTML.decode('utf-8'))
 
-        try:
+        if(serverList['servers'] != []):
             for server in serverList['servers']:
                 if( server['country'] == 'China' and server['num_players'] > 0 and server['players'] != {}):
                     embed = Embed(
@@ -76,6 +85,14 @@ class Cmd(Cog):
 
                     embed.add_field(name=f'玩家列表( {plNum} 位 )', value=f"{plNameStr}", inline=False)
                     await ctx.send(embed=embed)
+        else:
+            embed = Embed(
+            colour = discord.Color.red(),
+            timestamp = datetime.now()
+            )
+            embed.set_footer(text='请求来自 ' + f'{ctx.author.display_name} ( {ctx.author} ) ', icon_url=f'{ctx.author.avatar_url}')
+            embed.add_field(name=f"未查询到服务器")
+            await ctx.send(embed=embed)
         
 
     @command(name='GetServerList', aliases=['getserverlist', 'gsl'])
@@ -84,7 +101,7 @@ class Cmd(Cog):
         serverListHTML = urlopen(req).read()
         serverList = json.loads(serverListHTML.decode('utf-8'))
 
-        try:
+        if(serverList['servers'] != []):
             for server in serverList['servers']:
                 if( server['country'] == 'China' and server['num_players'] > 0 and server['players'] != {}):
                     embed = Embed(
@@ -107,6 +124,14 @@ class Cmd(Cog):
 
                     embed.add_field(name=f'玩家列表( {plNum} 位 )', value=f"{plNameStr}", inline=False)
                     await ctx.send(embed=embed)
+        else:
+            embed = Embed(
+            colour = discord.Color.red(),
+            timestamp = datetime.now()
+            )
+            embed.set_footer(text='请求来自 ' + f'{ctx.author.display_name} ( {ctx.author} ) ', icon_url=f'{ctx.author.avatar_url}')
+            embed.add_field(name=f"未查询到服务器")
+            await ctx.send(embed=embed)
 
     @command(name='roll', aliases=['dice', 'r'])
     async def _roll(self, ctx, die_string: str):
