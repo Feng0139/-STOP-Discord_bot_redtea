@@ -45,7 +45,7 @@ class Help(Cog):
     #         else:
     #             await ctx.send('未找到此命令.')
 
-    @command(name='twshelp')
+    @command(name='twshelp', aliases=['thelp'])
     async def _twshelp(self, ctx):
         embed = Embed(
             title = '命令面板',
@@ -56,10 +56,12 @@ class Help(Cog):
         embed.set_author(name='Teeworlds中国社区', url='https://discord.gg/dqwuHEq', icon_url=self.bot.guild.icon_url)
         embed.set_thumbnail(url=self.bot.guild.icon_url)
         embed.set_footer(text='欢迎使用命令面板.')
-        embed.add_field(name='$twshelp', value='查询帮助.')
-        embed.add_field(name='$GetServerList', value='查询所有 CHN 的服务器并且内有玩家.', inline=False)
-        embed.add_field(name='$GetDDRServer', value='查询 CHN 闯关服务器信息并有玩家存在.', inline=False)
-        embed.add_field(name='$GetINFServer', value='查询 CHN 感染服务器信息并有玩家存在.', inline=False)
+        embed.add_field(name='命令前缀', value='`$`')
+        embed.add_field(name='twshelp|thelp', value='查询帮助.')
+        embed.add_field(name='GetServerList|gsl', value='查询所有 CHN 的服务器并且内有玩家.', inline=False)
+        embed.add_field(name='GetDDRServer|gds', value='查询 CHN 闯关服务器信息并有玩家存在.', inline=False)
+        embed.add_field(name='GetINFServer|gis', value='查询 CHN 感染服务器信息并有玩家存在.', inline=False)
+        embed.add_field(name='GetAllPlayer|gap', value='查询 CHN 感染服务器信息并有玩家存在.', inline=False)
         await ctx.send(embed=embed)
 
     @command(name='help', aliases=['command', 'cmd'], hidden=False)
@@ -74,12 +76,13 @@ class Help(Cog):
         embed.set_author(name='Cyyou! 官方聊天室', url='https://discord.gg/SgEAh66', icon_url=self.bot.guild.icon_url)
         embed.set_thumbnail(url=self.bot.guild.icon_url)
         embed.set_footer(text='欢迎使用命令面板.')
-        embed.add_field(name='$help', value='查询帮助.')
-        # embed.add_field(name='$echo', value='无情复读机.')
-        embed.add_field(name='$hello', value='Hi!')
-        embed.add_field(name='$ping', value='Pong! 39ms')
-        embed.add_field(name='$roll', value='掷骰子($roll 1d6)', inline=False)
-        embed.add_field(name='$create_time', value='RedTea 的创建时间.', inline=False)
+        embed.add_field(name='命令前缀', value='`$`')
+        embed.add_field(name='help', value='查询帮助.')
+        # embed.add_field(name='echo', value='无情复读机.')
+        embed.add_field(name='hello', value='Hi!')
+        embed.add_field(name='ping', value='Pong! 39ms')
+        embed.add_field(name='roll', value='掷骰子($roll 1d6)', inline=False)
+        embed.add_field(name='create_time', value='RedTea 的创建时间.', inline=False)
         await ctx.send(embed=embed)
 
     @Cog.listener()

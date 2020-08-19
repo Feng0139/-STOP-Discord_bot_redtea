@@ -17,6 +17,42 @@ class Cmd(Cog):
     def __init__(self, bot):
         self.bot = bot
 
+    @command(name='GetAllPlayer', aliases=['getallplayer', 'gap'])
+    async def _GetAllPlayer(self, ctx):
+        req = urllib.request.Request(url=serverAPIHTML, headers=headers)
+        serverListHTML = urlopen(req).read()
+        serverList = json.loads(serverListHTML.decode('utf-8'))
+
+        if(serverList['servers'] != []):
+            plNameStr = '`|'
+            plNum = 0
+            plServer = 0
+            embed = Embed(
+                colour = discord.Color.red(),
+                timestamp = datetime.now()
+                )
+            embed.set_footer(text='请求来自 ' + f'{ctx.author.display_name} ( {ctx.author} ) ', icon_url=f'{ctx.author.avatar_url}')
+        
+            for server in serverList['servers']:
+                if( server['country'] == 'China' and server['num_players'] > 0 and server['players'] != {}):
+                    plServer += 1
+                    for player in server['players']:
+                        plNameStr += f" {player['name']} |"
+                        plNum += 1
+
+            plNameStr += '`'
+
+            embed.add_field(name=f'已查询到有 {plNum} 位玩家在 {plServer} 中...', value=f"{plNameStr}", inline=False)
+            await ctx.send(embed=embed)
+        else:
+            embed = Embed(
+            colour = discord.Color.red(),
+            timestamp = datetime.now()
+            )
+            embed.set_footer(text='请求来自 ' + f'{ctx.author.display_name} ( {ctx.author} ) ', icon_url=f'{ctx.author.avatar_url}')
+            embed.add_field(name=f"未查询到服务器")
+            await ctx.send(embed=embed)
+
     @command(name='GetINFServer', aliases=['getinfserver', 'gis'])
     async def _GetINFServer(self, ctx):
         req = urllib.request.Request(url=serverAPIHTML + '?gamemode=InfClassR', headers=headers)
