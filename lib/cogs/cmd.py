@@ -62,7 +62,7 @@ class Cmd(Cog):
                     timestamp = datetime.now()
                 )
                 embed.set_footer(text='请求来自 ' + f'{ctx.author.display_name} ( {ctx.author} ) ', icon_url=f'{ctx.author.avatar_url}')
-                embed.add_field(name=f"{server['name']}", value=f"`Server IP: {server['server_ip']}:{server['server_port']}`", inline=False)
+                embed.add_field(name=f"{server['name']}", value=f"`Server IP: ` `{server['server_ip']}:{server['server_port']}`", inline=False)
                 
                 plNameStr = '`|'
                 plNum = 0
