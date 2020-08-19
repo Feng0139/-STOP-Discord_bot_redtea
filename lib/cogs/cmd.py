@@ -47,7 +47,7 @@ class Cmd(Cog):
             if( server['country'] == 'China' and server['num_players'] > 0 and server['players'] != {}):
                 await ctx.send(embed= GetEmbedServer(f"{ctx}", f"{server}"))
 
-    def GetEmbedServer(self, ctx, server):
+    async def GetEmbedServer(self, ctx, server):
             embed = Embed(
                 colour = discord.Color.red(),
                 timestamp = datetime.now()
