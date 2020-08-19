@@ -57,10 +57,9 @@ class Help(Cog):
         embed.set_thumbnail(url=self.bot.guild.icon_url)
         embed.set_footer(text='欢迎使用命令面板.')
         embed.add_field(name='$twshelp', value='查询帮助.')
-        embed.add_field(name='$getserverlist', value='查询所有在中国的服务器并且内有玩家.')
-        # embed.add_field(name='$echo', value='无情复读机.')
-        embed.add_field(name='$roll', value='掷骰子($roll 1d6)', inline=False)
-        embed.add_field(name='$create_time', value='RedTea 的创建时间.', inline=False)
+        embed.add_field(name='$GetServerList', value='查询所有 CHN 的服务器并且内有玩家.', inline=False)
+        embed.add_field(name='$GetDDRServer', value='查询 CHN 闯关服务器信息并有玩家存在.', inline=False)
+        embed.add_field(name='$GetINFServer', value='查询 CHN 感染服务器信息并有玩家存在.', inline=False)
         await ctx.send(embed=embed)
 
     @command(name='help', aliases=['command', 'cmd'], hidden=False)
