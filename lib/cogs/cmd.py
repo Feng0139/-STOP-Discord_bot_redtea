@@ -101,7 +101,7 @@ class Cmd(Cog):
             await ctx.send(embed=embed)
 
     @command(name='GetDDRServer', aliases=['getddrserver', 'gds'])
-    async def _GetDDRServer(self, ctx, *, message='None'):
+    async def _GetDDRServer(self, ctx, *, message=None):
         tempHtml = serverAPIHTML
         num = int(message.split('CHN' or 'chn' or 'c')[0])
         if num == 1:
