@@ -29,7 +29,7 @@ class Cmd(Cog):
             plNum = 0
             plAllNum = 0        # 所有玩家数量
             plServer = 0        # 读取到的服务器数量（含玩家）
-            plNameStr = '`|'
+            plNameStr = '```|'
 
             embed = Embed(
             colour = discord.Color.red(),
@@ -45,17 +45,12 @@ class Cmd(Cog):
                         plNum += 1
                         plAllNum += 1
 
-                        if (plNum % 15 == 1):
-                            plNum = 0
-                            plNameStr += '`'
-                            embed.add_field(name=f'玩家列表( {plNum} 位 )', value=f"{plNameStr}", inline=False)
-                            plNameStr = '`|'
-
             if(plNum <= 0):
                 plNameStr = ''
                 embed.set_author(name=f'未查询到有位玩家在 CHN 服务器中...')
             else:
                 embed.set_author(name=f'已查询到共有 {plAllNum} 位玩家在 {plServer} 个 CHN 服务器中...')
+                await ctx.send(f'{plNameStr}')
 
             await ctx.send(embed=embed)
 
