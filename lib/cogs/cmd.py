@@ -103,7 +103,7 @@ class Cmd(Cog):
     @command(name='GetDDRServer', aliases=['getddrserver', 'gds'])
     async def _GetDDRServer(self, ctx, *, message='None'):
         tempHtml = serverAPIHTML
-        num = int(message.split('CHN' or 'chn' or 'c', 1)[0])
+        num = int(message.split('CHN' or 'chn' or 'c')[0])
         if num == 1:
             tempHtml += '?ip=139.9.34.133&gamemode=DDraceNetwork'
         elif num == 2:
