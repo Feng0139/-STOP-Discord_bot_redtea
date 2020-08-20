@@ -70,10 +70,10 @@ class Bot(BotBase):
 
     async def on_error(self, err, *args, **kwargs):
         if err == "on_command_error":
-            await args[0].send('在执行命令的时候发生了一些未知错误.')
+            # await args[0].send('在执行命令的时候发生了一些错误.')
         else:
             channel = self.get_channel(510468583290175491)
-            await channel.send('RedTea bot 发生了一些未知错误.')
+            # await channel.send('RedTea bot 发生了一些未知错误.')
 
         raise
 
