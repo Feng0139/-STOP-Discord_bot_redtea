@@ -116,7 +116,7 @@ class Cmd(Cog):
         else:
             tempHtml += '?gamemode=DDraceNetwork'
         
-        req = urllib.request.Request(url=temp, headers=headers)
+        req = urllib.request.Request(url=tempHtml, headers=headers)
         
         serverListHTML = urlopen(req).read()
         serverList = json.loads(serverListHTML.decode('utf-8'))
