@@ -103,15 +103,16 @@ class Cmd(Cog):
     @command(name='GetDDRServer', aliases=['getddrserver', 'gds'])
     async def _GetDDRServer(self, ctx, *, message=None):
         tempHtml = serverAPIHTML
-        num = int(message.split('CHN')[1])
-        if num == 1:
-            tempHtml += '?ip=139.9.34.133&gamemode=DDraceNetwork'
-        elif num == 2:
-            tempHtml += '?ip=47.102.202.103&gamemode=DDraceNetwork'
-        elif num == 3:
-            tempHtml += '?ip=39.105.39.69&gamemode=DDraceNetwork'
-        elif num == 4:
-            tempHtml += '?ip=39.106.226.96&gamemode=DDraceNetwork'
+        if message != None:
+            num = int(message.split('CHN')[1])
+            if num == 1:
+                tempHtml += '?ip=139.9.34.133&gamemode=DDraceNetwork'
+            elif num == 2:
+                tempHtml += '?ip=47.102.202.103&gamemode=DDraceNetwork'
+            elif num == 3:
+                tempHtml += '?ip=39.105.39.69&gamemode=DDraceNetwork'
+            elif num == 4:
+                tempHtml += '?ip=39.106.226.96&gamemode=DDraceNetwork'
         else:
             tempHtml += '?gamemode=DDraceNetwork'
         
