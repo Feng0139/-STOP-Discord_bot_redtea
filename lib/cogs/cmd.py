@@ -12,9 +12,20 @@ import json
 
 headers = {'User-Agent':'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:23.0) Gecko/20100101 Firefox/23.0'}
 serverAPIHTML = 'https://api.status.tw/2.0/server/list/'
-#   https://api.status.tw/2.0/server/list/?ip=14.29.99.49   TOM PVP
-#   https://api.status.tw/2.0/server/list/?ip=106.14.194.1  David PVP
-#   https://api.status.tw/2.0/server/list/?ip=139.9.34.133  DDNet
+################### Normal
+# https://api.status.tw/2.0/server/list/?ip=14.29.99.49     TOM PVP
+# https://api.status.tw/2.0/server/list/?ip=106.14.194.1    David PVP
+# https://api.status.tw/2.0/server/list/?ip=47.101.147.245  Arch 上海
+# 
+# https://api.status.tw/2.0/server/list/?ip=47.102.202.103  DDNet CHN2 上海
+# https://api.status.tw/2.0/server/list/?ip=39.105.39.69    DDNet CHN3 北京
+# https://api.status.tw/2.0/server/list/?ip=39.106.226.96   DDNet CHN4 北京
+
+################### Error
+# https://api.status.tw/2.0/server/list/?ip=139.9.34.133    DDNet CHN1
+
+################### Default
+# https://api.status.tw/2.0/server/list/?ip=
 class Cmd(Cog):
     def __init__(self, bot):
         self.bot = bot
@@ -90,8 +101,22 @@ class Cmd(Cog):
             await ctx.send(embed=embed)
 
     @command(name='GetDDRServer', aliases=['getddrserver', 'gds'])
-    async def _GetDDRServer(self, ctx):
-        req = urllib.request.Request(url=serverAPIHTML + '?gamemode=DDraceNetwork', headers=headers)
+    async def _GetDDRServer(self, ctx, *, message='None'):
+        tempHtml = serverAPIHTML
+        num = int(message.split('CHN' or 'chn' or 'c', 1)[0])
+        if num == 1:
+            tempHtml += '?ip=139.9.34.133&gamemode=DDraceNetwork'
+        elif num == 2:
+            tempHtml += '?ip=47.102.202.103&gamemode=DDraceNetwork'
+        elif num == 3:
+            tempHtml += '?ip=39.105.39.69&gamemode=DDraceNetwork'
+        elif num == 4:
+            tempHtml += '?ip=39.106.226.96&gamemode=DDraceNetwork'
+        else:
+            tempHtml += '?gamemode=DDraceNetwork'
+        
+        req = urllib.request.Request(url=temp, headers=headers)
+        
         serverListHTML = urlopen(req).read()
         serverList = json.loads(serverListHTML.decode('utf-8'))
 
