@@ -26,33 +26,23 @@ class Cmd(Cog):
         serverList = json.loads(serverListHTML.decode('utf-8'))
 
         if(serverList['servers'] != []):
-            plNum = 0
             plAllNum = 0        # 所有玩家数量
             plServer = 0        # 读取到的服务器数量（含玩家）
-            plNameStr = '```|'
 
-            # embed = Embed(
-            # colour = discord.Color.red(),
-            # timestamp = datetime.now()
-            # )
-            # embed.set_footer(text='请求来自 ' + f'{ctx.author.display_name} ( {ctx.author} ) ', icon_url=f'{ctx.author.avatar_url}')
-        
             for server in serverList['servers']:
                 if( server['country'] == 'China' and server['num_players'] > 0 and server['players'] != []):
                     plServer += 1
                     for player in server['players']:
-                        plNameStr += f" {player['name']} |"
-                        plNum += 1
                         plAllNum += 1
 
-            if(plNum < 1):
-                plNameStr = ''
-                # embed.set_author(name='未查询到有位玩家在 CHN 服务器中...')
-            else:
-                # embed.set_author(name=f'已查询到共有 {plAllNum} 位玩家在 {plServer} 个 CHN 服务器中...')
-                await ctx.send(f'{plNameStr}')
+            embed = Embed(
+            colour = discord.Color.red(),
+            timestamp = datetime.now()
+            )
+            embed.set_author(name=f'已查询到共有 {plAllNum} 位玩家在 {plServer} 个 CHN 服务器中...')
+            embed.set_footer(text='请求来自 ' + f'{ctx.author.display_name} ( {ctx.author} ) ', icon_url=f'{ctx.author.avatar_url}')
 
-            # await ctx.send(embed=embed)
+            await ctx.send(embed=embed)
 
     @command(name='GetINFServer', aliases=['getinfserver', 'gis'])
     async def _GetINFServer(self, ctx):
