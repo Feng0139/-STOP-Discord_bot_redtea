@@ -39,15 +39,15 @@ class Cmd(Cog):
                         plNum += 1
 
             embed = Embed(
-                colour = discord.Color.red(),
-                timestamp = datetime.now()
-                )
+            colour = discord.Color.red(),
+            timestamp = datetime.now()
+            )
             embed.set_footer(text='请求来自 ' + f'{ctx.author.display_name} ( {ctx.author} ) ', icon_url=f'{ctx.author.avatar_url}')
 
             plNameStr += '`'
 
             if(plNum <= 0):
-                plNameStr = ''
+                plNameStr = ' '
 
             embed.add_field(name=f'已查询到有 {plNum} 位玩家在 {plServer} 个 CHN 服务器中...', value=f"{plNameStr}", inline=False)
             await ctx.send(embed=embed)
