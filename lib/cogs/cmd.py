@@ -9,7 +9,7 @@ from urllib.request import urlopen;
 import urllib
 import json
 
-from task import serverList
+from lib.cogs.task import serverList
 
 headers = {'User-Agent':'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:23.0) Gecko/20100101 Firefox/23.0'}
 serverAPIHTML = 'https://api.status.tw/2.0/server/list/'
