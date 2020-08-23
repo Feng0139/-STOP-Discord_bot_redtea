@@ -60,7 +60,8 @@ class Help(Cog):
         embed.add_field(name='查询 CHN 所有包含玩家的服务器',    value='`GetServerList` | `gsl`', inline=False)
         embed.add_field(name='查询 CHN 包含玩家的闯关服务器信息', value='`GetDDRServer` | `gds`', inline=False)
         embed.add_field(name='查询 CHN 包含玩家的感染服务器信息', value='`GetINFServer` | `gis`', inline=False)
-        embed.add_field(name='查询 CHN 正在游玩的玩家数量及名称', value='`GetAllPlayer` | `gap`', inline=False)
+        embed.add_field(name='查询 CHN 正在游玩的玩家数量', value='`GetAllPlayer` | `gap`', inline=False)
+        embed.add_field(name='查询 CHN 服务器正在游玩的玩家', value='`SearchPlayer` | `sp`', inline=False)
         await ctx.send(embed=embed)
 
     @command(name='cyhelp', aliases=['chelp'], hidden=False)

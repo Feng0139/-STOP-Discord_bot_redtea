@@ -12,23 +12,71 @@ import json
 
 headers = {'User-Agent':'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:23.0) Gecko/20100101 Firefox/23.0'}
 serverAPIHTML = 'https://api.status.tw/2.0/server/list/'
+
 ################### Normal
 # https://api.status.tw/2.0/server/list/?ip=14.29.99.49     TOM PVP
 # https://api.status.tw/2.0/server/list/?ip=106.14.194.1    David PVP
 # https://api.status.tw/2.0/server/list/?ip=47.101.147.245  Arch 上海
 # 
-# https://api.status.tw/2.0/server/list/?ip=47.102.202.103  DDNet CHN2 上海
-# https://api.status.tw/2.0/server/list/?ip=39.105.39.69    DDNet CHN3 北京
-# https://api.status.tw/2.0/server/list/?ip=39.106.226.96   DDNet CHN4 北京
+DDNetCHN1 = '?ip=139.9.34.133'    # DDNet CHN1 广州
+DDNetCHN2 = '?ip=47.102.202.103'  # DDNet CHN2 上海
+DDNetCHN3 = '?ip=39.105.39.69'    # DDNet CHN3 北京
+DDNetCHN4 = '?ip=39.106.226.96'   # DDNet CHN4 北京
+DDNetCHN5 = '?ip=111.177.18.6'    # DDNet CHN5 襄阳
+DDNetCHN6 = '?ip=47.102.203.158'  # DDNet CHN6 上海
 
-################### Error
-# https://api.status.tw/2.0/server/list/?ip=139.9.34.133    DDNet CHN1
 
-################### Default
-# https://api.status.tw/2.0/server/list/?ip=
 class Cmd(Cog):
     def __init__(self, bot):
         self.bot = bot
+
+    @command(name='SearchPlayer', aliases=['searchplayer', 'sp'])
+    async def _SearchPlayer(self, ctx, *, message=None):
+        embed = Embed(
+        colour = discord.Color.red(),
+        timestamp = datetime.now()
+        )
+        embed.set_footer(text='请求来自 ' + f'{ctx.author.display_name} ( {ctx.author} ) ', icon_url=f'{ctx.author.avatar_url}')
+
+        if(message == None):
+            embed.add_field(name='查询失败，参数为空。', value='例：`$sp CarolVlCznYu`')
+            await ctx.send(embed=embed)
+            return
+        
+        isPlayer = False
+
+        req = urllib.request.Request(url=serverAPIHTML, headers=headers)
+        serverListHTML = urlopen(req).read()
+        serverList = json.loads(serverListHTML.decode('utf-8'))
+
+        if (serverList['servers'] != []):
+            for server in serverList['servers']:
+                if( server['country'] == 'China' and server['num_players'] > 0 and server['players'] != []):
+                    for player in server['players']:
+                        if (player['name'] == message):
+                            plNameStr = '`|'
+                            plNum = 0
+                        
+                            for player in server['players']:
+                                plNameStr += f" {player['name']} |"
+                                plNum += 1
+
+                            embed = Embed(
+                            colour = discord.Color.red(),
+                            timestamp = datetime.now()
+                            )
+                            embed.set_footer(text='请求来自 ' + f'{ctx.author.display_name} ( {ctx.author} ) ', icon_url=f'{ctx.author.avatar_url}')
+                            embed.add_field(name=f"{server['name']}", value=f"`Server IP:` `{server['server_ip']}:{server['server_port']}`", inline=False)
+                            embed.add_field(name="游戏版本", value=f"`{server['version']}`")
+                            embed.add_field(name="游戏模式", value=f"`{server['gamemode']}`")
+                            embed.add_field(name=f"当前地图", value=f"`{server['map']}`")
+                            embed.add_field(name=f'玩家列表( {plNum} 位 )', value=f"{plNameStr}", inline=False)
+                            await ctx.send(embed=embed)
+                            return
+        else:
+            embed.add_field(name='查询失败，服务器列表为空。', value='请稍等一会后再次查询.')
+
+        await ctx.send(embed=embed)
 
     @command(name='GetAllPlayer', aliases=['getallplayer', 'gap'])
     async def _GetAllPlayer(self, ctx):
@@ -106,13 +154,17 @@ class Cmd(Cog):
         if message != None:
             num = int(message.split('CHN')[1])
             if num == 1:
-                tempHtml += '?ip=139.9.34.133&gamemode=DDraceNetwork'
+                tempHtml += DDNetCHN1 + '&gamemode=DDraceNetwork'
             elif num == 2:
-                tempHtml += '?ip=47.102.202.103&gamemode=DDraceNetwork'
+                tempHtml += DDNetCHN2 + '&gamemode=DDraceNetwork'
             elif num == 3:
-                tempHtml += '?ip=39.105.39.69&gamemode=DDraceNetwork'
+                tempHtml += DDNetCHN3 + '&gamemode=DDraceNetwork'
             elif num == 4:
-                tempHtml += '?ip=39.106.226.96&gamemode=DDraceNetwork'
+                tempHtml += DDNetCHN4 + '&gamemode=DDraceNetwork'
+            elif num == 5:
+                tempHtml += DDNetCHN5 + '&gamemode=DDraceNetwork'
+            elif num == 6:
+                tempHtml += DDNetCHN6 + '&gamemode=DDraceNetwork'
         else:
             tempHtml += '?gamemode=DDraceNetwork'
         
