@@ -1,8 +1,7 @@
 from datetime import datetime
 from typing import Optional
 
-from discord.ext.commands import Cog
-from discord.ext.commands import command
+from discord.ext.commands import Cog, command
 from discord.utils import get
 from discord import Embed
 import discord
