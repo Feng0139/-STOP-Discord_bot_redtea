@@ -31,7 +31,7 @@ class Cmd(Cog):
         self.bot = bot
 
     @command(name='SearchPlayer', aliases=['searchplayer', 'sp'])
-    async def _SearchPlayer(self, ctx, *, message=None):
+    async def _SearchPlayer(self, ctx, *, message : str = None):
         embed = Embed(
         colour = discord.Color.red(),
         timestamp = datetime.now()
@@ -148,7 +148,7 @@ class Cmd(Cog):
             await ctx.send(embed=embed)
 
     @command(name='GetDDRServer', aliases=['getddrserver', 'gds'])
-    async def _GetDDRServer(self, ctx, *, message=None):
+    async def _GetDDRServer(self, ctx, *, message : str = None):
         tempHtml = serverAPIHTML
         if message != None:
             num = int(message.split('CHN')[1])
