@@ -44,6 +44,8 @@ class Cmd(Cog):
             return
         
         isPlayer = False
+        
+        plNameStr = '`|'
 
         req = urllib.request.Request(url=serverAPIHTML, headers=headers)
         serverListHTML = urlopen(req).read()
@@ -54,12 +56,13 @@ class Cmd(Cog):
                 if( server['country'] == 'China' and server['num_players'] > 0 and server['players'] != []):
                     for player in server['players']:
                         if (player['name'] == message):
-                            plNameStr = '`|'
                             plNum = 0
                         
                             for player in server['players']:
                                 plNameStr += f" {player['name']} |"
                                 plNum += 1
+
+                            plNameStr += '`'
 
                             embed = Embed(
                             colour = discord.Color.red(),
@@ -73,6 +76,8 @@ class Cmd(Cog):
                             embed.add_field(name=f'玩家列表( {plNum} 位 )', value=f"{plNameStr}", inline=False)
                             await ctx.send(embed=embed)
                             return
+        elif isPlayer == False:
+            embed.add_field(name='当前玩家不在线。', value='')
         else:
             embed.add_field(name='查询失败，服务器列表为空。', value='请稍等一会后再次查询.')
 
