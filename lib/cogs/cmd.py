@@ -51,7 +51,7 @@ class Cmd(Cog):
 
         if (serverList['servers'] != []):
             for server in serverList['servers']:
-                if( server['country'] == 'China' and server['num_players'] > 0 and server['players'] != []):
+                if( server['country'] == 'China' and server['players'] != []):
                     for player in server['players']:
                         if (player['name'] == message):
                             plNum = 0
@@ -70,6 +70,8 @@ class Cmd(Cog):
                             await ctx.send(embed=embed)
                             return
             embed.add_field(name='查询的玩家不在线或者不在 CHN 服务器当中。', value='')
+            await ctx.send(embed=embed)
+            return
         else:
             embed.add_field(name='查询失败，服务器列表为空。', value='请稍等一会后再次查询.')
 
@@ -86,7 +88,7 @@ class Cmd(Cog):
             plServer = 0        # 读取到的服务器数量（含玩家）
 
             for server in serverList['servers']:
-                if( server['country'] == 'China' and server['num_players'] > 0 and server['players'] != []):
+                if( server['country'] == 'China' and server['players'] != []):
                     plServer += 1
                     for player in server['players']:
                         plAllNum += 1
@@ -109,7 +111,7 @@ class Cmd(Cog):
         servers = 0
         if(serverList['servers'] != []):
             for server in serverList['servers']:
-                if( server['country'] == 'China' and server['num_players'] > 0 and server['players'] != []):
+                if( server['country'] == 'China' and server['players'] != []):
                     servers += 1
                     plNameStr = '`|'
                     plNum = 0
@@ -173,7 +175,7 @@ class Cmd(Cog):
         servers = 0
         if(serverList['servers'] != []):
             for server in serverList['servers']:
-                if( server['country'] == 'China' and server['num_players'] > 0 and server['players'] != []):
+                if( server['country'] == 'China' and server['players'] != []):
                     servers += 1
                     plNameStr = '`|'
                     plNum = 0
@@ -218,7 +220,7 @@ class Cmd(Cog):
         servers = 0
         if(serverList['servers'] != []):
             for server in serverList['servers']:
-                if( server['country'] == 'China' and server['num_players'] > 0 and server['players'] != []):
+                if( server['country'] == 'China' and server['players'] != []):
                     servers += 1
                     plNameStr = '`|'
                     plNum = 0
