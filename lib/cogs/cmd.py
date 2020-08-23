@@ -31,14 +31,14 @@ class Cmd(Cog):
         self.bot = bot
 
     @command(name='SearchPlayer', aliases=['searchplayer', 'sp'])
-    async def _SearchPlayer(self, ctx, *, message : str = None):
+    async def _SearchPlayer(self, ctx, *, arg):
         embed = Embed(
         colour = discord.Color.red(),
         timestamp = datetime.now()
         )
         embed.set_footer(text='请求来自 ' + f'{ctx.author.display_name} ( {ctx.author} ) ', icon_url=f'{ctx.author.avatar_url}')
 
-        if(message == None):
+        if(arg == None):
             embed.add_field(name='查询失败，参数为空。', value='例：`$sp CarolVlCznYu`')
             await ctx.send(embed=embed)
             return
@@ -53,7 +53,7 @@ class Cmd(Cog):
             for server in serverList['servers']:
                 if( server['country'] == 'China' and server['players'] != []):
                     for player in server['players']:
-                        if (player['name'] == message):
+                        if (player['name'] == arg):
                             plNum = 0
                         
                             for player in server['players']:
@@ -148,10 +148,10 @@ class Cmd(Cog):
             await ctx.send(embed=embed)
 
     @command(name='GetDDRServer', aliases=['getddrserver', 'gds'])
-    async def _GetDDRServer(self, ctx, *, message : str = None):
+    async def _GetDDRServer(self, ctx, *, arg):
         tempHtml = serverAPIHTML
-        if message != None:
-            num = int(message.split('CHN')[1])
+        if arg != None:
+            num = int(arg.split('CHN')[1])
             if num == 1:
                 tempHtml += DDNetCHN1 + '&gamemode=DDraceNetwork'
             elif num == 2:
