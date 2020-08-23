@@ -69,10 +69,10 @@ class Cmd(Cog):
                             embed.add_field(name=f'玩家列表( {plNum} 位 )', value=f"{plNameStr}", inline=False)
                             await ctx.send(embed=embed)
                             return
+            embed.add_field(name='查询的玩家不在线或者不在 CHN 服务器当中。', value='')
         else:
             embed.add_field(name='查询失败，服务器列表为空。', value='请稍等一会后再次查询.')
 
-        embed.add_field(name='查询的玩家不在线或者不在 CHN 服务器当中。', value='')
         await ctx.send(embed=embed)
 
     @command(name='GetAllPlayer', aliases=['getallplayer', 'gap'])
