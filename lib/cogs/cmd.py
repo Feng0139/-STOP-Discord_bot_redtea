@@ -42,9 +42,7 @@ class Cmd(Cog):
             embed.add_field(name='查询失败，参数为空。', value='例：`$sp CarolVlCznYu`')
             await ctx.send(embed=embed)
             return
-        
-        isPlayer = False
-
+    
         plNameStr = '`|'
 
         req = urllib.request.Request(url=serverAPIHTML, headers=headers)
@@ -56,7 +54,6 @@ class Cmd(Cog):
                 if( server['country'] == 'China' and server['num_players'] > 0 and server['players'] != []):
                     for player in server['players']:
                         if (player['name'] == message):
-                            isPlayer = True
                             plNum = 0
                         
                             for player in server['players']:
@@ -65,7 +62,6 @@ class Cmd(Cog):
 
                             plNameStr += '`'
 
-                            embed.set_footer(text='请求来自 ' + f'{ctx.author.display_name} ( {ctx.author} ) ', icon_url=f'{ctx.author.avatar_url}')
                             embed.add_field(name=f"{server['name']}", value=f"`Server IP:` `{server['server_ip']}:{server['server_port']}`", inline=False)
                             embed.add_field(name="游戏版本", value=f"`{server['version']}`")
                             embed.add_field(name="游戏模式", value=f"`{server['gamemode']}`")
@@ -73,11 +69,10 @@ class Cmd(Cog):
                             embed.add_field(name=f'玩家列表( {plNum} 位 )', value=f"{plNameStr}", inline=False)
                             await ctx.send(embed=embed)
                             return
-                if isPlayer == False:
-                    embed.add_field(name='查询的玩家不在线或者不在 CHN 服务器当中。', value='')
         else:
             embed.add_field(name='查询失败，服务器列表为空。', value='请稍等一会后再次查询.')
 
+        embed.add_field(name='查询的玩家不在线或者不在 CHN 服务器当中。', value='')
         await ctx.send(embed=embed)
 
     @command(name='GetAllPlayer', aliases=['getallplayer', 'gap'])
