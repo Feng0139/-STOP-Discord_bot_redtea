@@ -1,15 +1,14 @@
 from random import choice, randint
 from datetime import datetime
 
-from discord.ext.commands import Cog, command
+from discord.ext.commands import Cog
+from discord.ext.commands import command
 from discord import Embed
 import discord
 
 from urllib.request import urlopen;
 import urllib
 import json
-
-from lib.cogs.task import serverList
 
 headers = {'User-Agent':'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:23.0) Gecko/20100101 Firefox/23.0'}
 serverAPIHTML = 'https://api.status.tw/2.0/server/list/'
@@ -80,6 +79,10 @@ class Cmd(Cog):
 
     @command(name='GetAllPlayer', aliases=['getallplayer', 'gap'])
     async def _GetAllPlayer(self, ctx):
+        req = urllib.request.Request(url=serverAPIHTML, headers=headers)
+        serverListHTML = urlopen(req).read()
+        serverList = json.loads(serverListHTML.decode('utf-8'))
+
         if(serverList['servers'] != []):
             plAllNum = 0        # 所有玩家数量
             plServer = 0        # 读取到的服务器数量（含玩家）
